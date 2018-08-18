@@ -1,0 +1,11 @@
+XTerm.termName: xterm-256color
+XTerm.vt100.metaSendsEscape: true
+XTerm.vt100.saveLines: 4096
+XTerm.vt100.reverseVideo: true
+XTerm.vt100.faceName: DejaVu Sans Mono
+XTerm.vt100.renderFont: true
+XTerm.xt100.faceSize: 9
+XTerm.vt100.translations: #override \n\
+	<Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\
+	Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+	Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
