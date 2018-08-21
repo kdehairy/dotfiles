@@ -37,4 +37,5 @@ twm &
 #xterm -geometry 80x50+494+51 &
 xterm &
 start-pulseaudio-x11 &
+ssh-add ~/.ssh/id_kdehairy_rsa &
 exec i3
