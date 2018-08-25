@@ -45,6 +45,11 @@ mode "$mode_system" {
 }
 bindsym $mod+Pause mode "$mode_system"
 
+# sound controls
+bindsym $mod+Prior exec pactl set-sink-volume 0 +5%
+bindsym $mod+Next exec pactl set-sink-volume 0 -5%
+bindsym $mod+Home exec pactl set-sink-mute 0 toggle
+
 # start a terminal
 bindsym $mod+Return exec xterm #i3-sensible-terminal
 
