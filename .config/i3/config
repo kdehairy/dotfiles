@@ -126,7 +126,7 @@ bindsym $mod+1 workspace $ws2
 bindsym $mod+2 workspace $ws3
 bindsym $mod+3 workspace $ws4
 bindsym $mod+n workspace next
-bindsym $mod+Shift+n workspace previous
+bindsym $mod+Shift+n workspace prev
 
 # move focused container to workspace
 bindsym $mod+Shift+0 move container to workspace $ws1
