@@ -1,6 +1,11 @@
 " No compatibility with Vi
 set nocompatible
 
+" status line
+set laststatus=2
+"set statusline=%f\ %m\ %r\ %y%=%l/%L\,%c\ [%p%%]
+set statusline=%<%-.30t\ %h%m%r%5y%=%-5.(%l/%L,%c%V%)\ [%p%%]
+
 " indenting spaces
 set shiftwidth=2
 
