@@ -15,7 +15,20 @@ compinit
 
 source /usr/share/doc/pkgfile/command-not-found.zsh
 
-PS1=$'%{\e[38;5;25m%}%n@%m [ %{\e[38;5;26m%}%1~ %{\e[38;5;25m%}]\n  %{\e[1;38;5;27m%}\u21b3 %#%{\e[0m%} '
+#PS1=$'%{\e[38;5;25m%}%n@%m [ %{\e[38;5;26m%}%1~ %{\e[38;5;25m%}]\n  %{\e[1;38;5;27m%}\u21b3 %#%{\e[0m%} '
+
+# Prompt
+function _current_dir() {
+	local _max_length="55"
+	if [[ $(echo -n $PWD | wc -c) -gt ${_max_length} ]]; then
+		echo "%-2~ ... %3~"
+	else
+		echo "%~"
+	fi
+}
+
+setopt PROMPT_SUBST
+PROMPT=$'\n%{\e[38;5;25m%}$(_current_dir)\n  %{\e[1;38;5;27m%}\u21b3 %#%{\e[0m%} '
 
 alias ls='ls --color=auto'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
