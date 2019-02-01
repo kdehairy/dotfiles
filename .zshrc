@@ -15,8 +15,6 @@ compinit
 
 source /usr/share/doc/pkgfile/command-not-found.zsh
 
-#PS1=$'%{\e[38;5;25m%}%n@%m [ %{\e[38;5;26m%}%1~ %{\e[38;5;25m%}]\n  %{\e[1;38;5;27m%}\u21b3 %#%{\e[0m%} '
-
 # Prompt
 function _current_dir() {
 	local _max_length="55"
@@ -26,9 +24,16 @@ function _current_dir() {
 		echo "%~"
 	fi
 }
+function precmd_vcs_info() {
+	vcs_info
+}
 
+precmd_functions+=( precmd_vcs_info )
+autoload -Uz vcs_info
 setopt PROMPT_SUBST
-PROMPT=$'\n%{\e[38;5;25m%}$(_current_dir)\n  %{\e[1;38;5;27m%}\u21b3 %#%{\e[0m%} '
+PROMPT=$'\n%{\e[38;5;25m%}$(_current_dir) %{\e[32m%}$vcs_info_msg_0_\n  %{\e[1;38;5;27m%}\u21b3 %#%{\e[0m%} '
+zstyle ':vcs_info:git:*' formats '[ %b ]'
+
 
 alias ls='ls --color=auto'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
