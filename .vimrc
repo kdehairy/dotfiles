@@ -49,6 +49,12 @@ set wildmenu
 " tags
 command! MakeTags !ctags -R .
 
+" splits
+nmap <C-h> :vertical res +5 <CR>
+nmap <C-l> :vertical res -5 <CR>
+nmap <C-j> :res +5 <CR>
+nmap <C-k> :res -5 <CR>
+
 " netrw file browser
 let g:netrw_banner=0           " disable top banner
 let g:netrw_browse_split=4     " open in prior window
