@@ -38,3 +38,5 @@ zstyle ':vcs_info:git:*' formats '[ %b ]'
 alias ls='ls --color=auto'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias img='feh --auto-rotate --scale-down'
+
+export EDITOR=vim
