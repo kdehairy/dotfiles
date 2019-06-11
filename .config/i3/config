@@ -115,10 +115,10 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "general"
-set $ws2 "<span foreground='LimeGreen'><b>primary</b></span>"
-set $ws3 "seconday"
-set $ws4 "background"
+set $ws1 "0:general"
+set $ws2 "<span foreground='LimeGreen'><b>1:primary</b></span>"
+set $ws3 "2:seconday"
+set $ws4 "3:background"
 
 # switch to workspace
 bindsym $mod+0 workspace $ws1
@@ -180,6 +180,9 @@ bar {
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% 	#increase sound volume
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% 	#decrease sound volume
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle 	# mute sound
+
+bindsym $mod+KP_Prior exec pactl set-sink-volume 0 +5%
+bindsym $mod+KP_Next exec pactl set-sink-volume 0 -5%
 
 exec --no-startup-id compton
 exec --no-startup-id nm-applet
