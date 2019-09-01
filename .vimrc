@@ -1,3 +1,6 @@
+" Leader to ;
+let mapleader=";"
+
 " No compatibility with Vi
 set nocompatible
 
@@ -39,6 +42,7 @@ set showmatch
 
 " syntax highlighting
 syntax enable
+colorscheme cobalt
 
 " Enable file type detection and auto indentation accordingly
 filetype plugin on
@@ -55,13 +59,16 @@ nmap <C-l> :vertical res -5 <CR>
 nmap <C-j> :res +5 <CR>
 nmap <C-k> :res -5 <CR>
 
+" copy to clipboard
+noremap <Leader>y "+y
+noremap <Leader>p "+p
+
 " netrw file browser
 let g:netrw_banner=0           " disable top banner
 let g:netrw_browse_split=4     " open in prior window
 "let g:netrw_altv=1             " open splits to the right
 let g:netrw_winsize=75         " new split size in percentage
 let g:netrw_liststyle=3        " tree view
-
 
 " Learning
 " ========
