@@ -1,4 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/home/kdehairy/git_tree/dhcp-wpad-1/build/sdhcpc@exe'
-let g:netrw_dirhist_2='/home/kdehairy/Desktop/unp/commons'
