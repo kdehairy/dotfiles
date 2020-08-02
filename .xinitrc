@@ -39,4 +39,5 @@ xterm &
 start-pulseaudio-x11 &
 ssh-add ~/.ssh/id_kdehairy_rsa &
 setxkbmap -model p105 -layout us,ara -variant , -option grp:shifts_toggle &
+$HOME/bin/load-randr-profile
 exec i3

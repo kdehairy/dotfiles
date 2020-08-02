@@ -45,6 +45,10 @@ mode "$mode_system" {
 }
 bindsym $mod+Delete mode "$mode_system"
 
+# Move workspace between screens
+bindsym $mod+Mod1+Left move workspace to output left
+bindsym $mod+Mod1+Right move workspace to output right
+
 # sound controls
 bindsym $mod+Prior exec pactl set-sink-volume 0 +5%
 bindsym $mod+Next exec pactl set-sink-volume 0 -5%

@@ -11,3 +11,5 @@ fi
 if [ -d "${HOME}/opt/clion" ];then
 	export PATH="${HOME}/opt/clion/bin:${PATH}"
 fi
+
+export PATH="$HOME/.cargo/bin:$PATH"

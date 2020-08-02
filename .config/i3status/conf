@@ -11,7 +11,7 @@ general {
         interval = 5
 }
 
-order += "path_exists vpn"
+order += "run_watch openconnect"
 order += "wireless _first_"
 order += "load"
 order += "disk"
@@ -27,6 +27,11 @@ ethernet _first_ {
 wireless _first_ {
 	format_up = "W"
 	format_down = "W"
+}
+
+run_watch openconnect {
+	pidfile = "/var/run/openconnect.pid"
+	format = "vpn"
 }
 
 path_exists vpn {
