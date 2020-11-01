@@ -184,5 +184,5 @@ bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle 	# mute sound
 bindsym $mod+KP_Prior exec pactl set-sink-volume 0 +5%
 bindsym $mod+KP_Next exec pactl set-sink-volume 0 -5%
 
-exec --no-startup-id compton
+exec --no-startup-id compton --config ~/.config/compton.conf
 exec --no-startup-id nm-applet
