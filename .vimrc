@@ -70,6 +70,10 @@ let g:netrw_browse_split=4     " open in prior window
 let g:netrw_winsize=75         " new split size in percentage
 let g:netrw_liststyle=3        " tree view
 
+" FormatXml
+com! FormatXml :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
+nnoremap = :FormatXml<Cr>
+
 " Learning
 " ========
 " Tags
