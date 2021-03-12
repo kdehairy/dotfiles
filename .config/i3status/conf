@@ -13,6 +13,7 @@ general {
 
 order += "path_exists vpn"
 order += "ethernet _first_"
+order += "wireless _first_"
 order += "load"
 order += "disk"
 order += "tztime local"
@@ -23,9 +24,15 @@ ethernet _first_ {
         format_down = "E"
 }
 
+wireless _first_ {
+        format_up = "W:%essid (%quality, %bitrate) %ip"
+        format_down = "W: down"
+}
+
 path_exists vpn {
 	# check if the vpn tun0 is up
-	path = "/proc/sys/net/ipv4/conf/proton0"
+	#path = "/proc/sys/net/ipv4/conf/tun0"
+	path = "/proc/sys/net/ipv4/conf/nordlynx"
 	format = "vpn"
 }
 
