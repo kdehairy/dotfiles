@@ -1,0 +1,36 @@
+{
+    "position": "bottom",
+    "modules-left": [
+        "sway/workspaces",
+	"sway/mode",
+	"custom/media"
+    ],
+    "modules-right": [
+	"cpu",
+	"network",
+	"battery",
+	"tray",
+        "sway/language",
+	"clock",
+    ],
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+	"format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "cpu: {usage}%",
+        "tooltip": false
+    },
+    "network": {
+    	"format-wifi": "W",
+        "format-alt": "{ifname}: {essid} {ipaddr}/{cidr}",
+        "tooltip-format": "{essid} ({signalStrength}%)",
+    },
+    "battery": {
+        "states": {
+	    "warning": 30,
+	    "critical": 10
+	},
+	"format": "BAT {capacity}%"
+    }
+}
