@@ -65,6 +65,11 @@ input type:touchpad {
     tap enabled
 }
 
+input * {
+		xkb_layout "us, ara"
+		xkb_options "grp:shifts_toggle"
+}
+
 ### Key bindings
 #
 # Basics:
