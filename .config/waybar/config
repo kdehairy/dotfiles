@@ -8,15 +8,15 @@
     "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "custom/media"],
     //"modules-center": ["sway/window"],
     "modules-right": [
-	"pulseaudio", 
-	"cpu", 
-	"memory", 
-	"temperature", 
-	"network", 
-	"battery", 
-	"tray",
-	"sway/language", 
-	"clock", 
+			"pulseaudio", 
+			"cpu", 
+			"memory", 
+			"temperature", 
+			"network", 
+			"battery", 
+			"tray",
+			"sway/language", 
+			"clock", 
     ],
     "sway/scratchpad": {
         "format": "{icon} {count}",
@@ -31,7 +31,8 @@
     },
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{:<b>%a</b> %Y-%m-%d}",
+				"locale": "en_US.UTF-8"
     },
     "cpu": {
         "format": "{usage}% ",
@@ -41,7 +42,7 @@
         "format": "{}% "
     },
     "temperature": {
-        // "thermal-zone": 2,
+        "thermal-zone": 10,
         // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C {icon}",
