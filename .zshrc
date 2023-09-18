@@ -24,6 +24,8 @@ export EDITOR=nvim
 source ${HOME}/bin/bssh.sh
 source ${HOME}/bin/bpass.sh
 
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
+
 #okta
 export OKTA_ORG_DOMAIN=okta.booking.com
 export OKTA_OIDC_CLIENT_ID=0oa69l79n9U8sx5if417

@@ -146,6 +146,11 @@ input * {
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+		# Move workspace to another display
+		bindsym $mod+Alt+Right move workspace to output right
+		bindsym $mod+Alt+Left move workspace to output left
+		bindsym $mod+Alt+Up move workspace to output up
+		bindsym $mod+Alt+Down move workspace to output down
 #
 # Layout stuff:
 #
