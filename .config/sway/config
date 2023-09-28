@@ -229,6 +229,19 @@ mode "$mode_system" {
 }
 bindsym $mod+Delete mode "$mode_system"
 
+# screen capture mode
+set $screenshot (a) area, (s) screen, (w) window
+mode "$screenshot" {
+    bindsym a exec '/usr/share/sway/scripts/grimshot save area ~/Pictures/ps_$(date +"%Y%m%d%H%M%S").png', mode "default"
+    bindsym s exec '/usr/share/sway/scripts/grimshot save screen ~/Pictures/ps_$(date +"%Y%m%d%H%M%S").png', mode "default"
+    bindsym w exec '/usr/share/sway/scripts/grimshot save window ~/Pictures/ps_$(date +"%Y%m%d%H%M%S").png', mode "default"
+
+# back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Print mode "$screenshot"
+
 # Media Buttons
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
