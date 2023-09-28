@@ -34,6 +34,9 @@ export OKTA_AWSCLI_FORMAT=aws-credentials
 export OKTA_AWSCLI_WRITE_AWS_CREDENTIALS=true
 export OKTA_AWSCLI_OPEN_BROWSER=true
 
+#Vault
+export VAULT_ADDR="https://vault.booking.com"
+
 #Wayland specific
 export _JAVA_AWT_WM_NONREPARENTING=1
 export MOZ_ENABLE_WAYLAND=1
