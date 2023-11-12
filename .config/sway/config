@@ -61,9 +61,9 @@ exec swayidle -w \
 #
 # Touchpad
 #
-input type:touchpad {
-    tap enabled
-}
+#input type:touchpad {
+#    tap enabled
+#}
 
 input * {
 		xkb_layout "us, ara"
@@ -99,10 +99,10 @@ input * {
 # Moving around:
 #
     # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
+    #bindsym $mod+$left focus left
+    #bindsym $mod+$down focus down
+    #bindsym $mod+$up focus up
+    #bindsym $mod+$right focus right
     # Or use $mod+[up|down|left|right]
     bindsym $mod+Left focus left
     bindsym $mod+Down focus down
