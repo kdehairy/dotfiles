@@ -21,21 +21,7 @@ alias gdiff='git difftool'
 
 export EDITOR=nvim
 
-source ${HOME}/bin/bssh.sh
-source ${HOME}/bin/bpass.sh
-
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
-
-#okta
-export OKTA_ORG_DOMAIN=okta.booking.com
-export OKTA_OIDC_CLIENT_ID=0oa69l79n9U8sx5if417
-export OKTA_AWS_ACCOUNT_FEDERATION_APP_ID=0oa1t1ub0fkS0kbyp416
-export OKTA_AWSCLI_FORMAT=aws-credentials
-export OKTA_AWSCLI_WRITE_AWS_CREDENTIALS=true
-export OKTA_AWSCLI_OPEN_BROWSER=true
-
-#Vault
-export VAULT_ADDR="https://vault.booking.com"
 
 #Wayland specific
 export _JAVA_AWT_WM_NONREPARENTING=1
