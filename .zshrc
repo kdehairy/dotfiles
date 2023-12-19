@@ -33,6 +33,9 @@ export XDG_CURRENT_DESKTOP=sway
 #golang
 export PATH=$PATH:$(go env GOPATH)/bin
 
+# custome scripts
+[ -d .zshrc.d ] && for f in $(find .zshrc.d -type f);do source $f;done
+
 
 if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
 	exec sway
