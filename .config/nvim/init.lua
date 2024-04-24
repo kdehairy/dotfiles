@@ -52,6 +52,8 @@ require('nvim_tree')
 
 require('lsp_config')
 
+require('lua')
+
 require('rust')
 
 require('go')
