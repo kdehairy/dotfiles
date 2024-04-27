@@ -3,41 +3,46 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.cmd([[
-	let mapleader=";"
+vim.g.mapleader = ";"
 
-	set nocompatible
+vim.o.compatible = false
 
-	" indentation
-	set shiftwidth=2
-	set tabstop=2
-	set softtabstop=2
-	set autoindent
+-- indentation
+vim.o.shiftwidth = 2
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.autoindent = true
 
-	set ruler
-	set cursorline
 
-	" seach
-	set incsearch
-	set ignorecase
-	set smartcase
+vim.o.ruler = true
+vim.o.cursorline = true
 
-	" treesitter
-	set nofoldenable
+-- search
+vim.o.incsearch = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
-	" splits
-	nmap <C-h> :vertical res +5 <CR>
-	nmap <C-l> :vertical res -5 <CR>
-	nmap <C-j> :res +5 <CR>
-	nmap <C-k> :res -5 <CR>
+-- treesitter
+vim.o.foldenable = false
 
-	" copy to clipboard
-	noremap <Leader>y "+y
-	noremap <Leader>p "+p
+--splits
+vim.keymap.set('n', '<C-h>', ':vertical res +5<cr>')
+vim.keymap.set('n', '<C-l>', ':vertical res -5<cr>')
+vim.keymap.set('n', '<C-j>', ':vertical res +5<cr>')
+vim.keymap.set('n', '<C-l>', ':vertical res -5<cr>')
 
-	" format xml
-	com! FormatXml :%!python -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
-]])
+--copy to clipboard
+vim.keymap.set('n', '<Leader>y', '"+y')
+vim.keymap.set('n', '<Leader>yy', '"+yy')
+vim.keymap.set('n', '<Leader>p', '"+p')
+
+-- format xml
+vim.api.nvim_create_user_command('Fmtxml',
+	':%!python -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"', {})
+-- format json
+vim.api.nvim_create_user_command('Fmtjson',
+	':%!python -m jsontool', {})
+
 
 require('plugins')
 
@@ -45,7 +50,8 @@ require('plugins')
 vim.opt.termguicolors = true
 
 -- Cobalt color theme
-require('colorbuddy').colorscheme('cobalt2')
+-- require('colorbuddy').colorscheme('cobalt2')
+vim.cmd([[colorscheme tokyonight]])
 
 -- nvim-tree setup
 require('nvim_tree')
