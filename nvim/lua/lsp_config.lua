@@ -27,7 +27,7 @@ vim.diagnostic.config({
 	severity_sort = false,
 	float = {
 		border = 'rounded',
-		source = 'always',
+		source = true,
 		header = '',
 		prefix = '',
 	},
@@ -43,11 +43,10 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-on_attach = function(client, bufnr)
+On_attach = function(client, bufnr)
 	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-	buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+	vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
 
 	-- Mappings.
 	local opts = { noremap = true, silent = true }
@@ -78,8 +77,8 @@ on_attach = function(client, bufnr)
 		end
 
 		-- Set autocommands conditional on server_capabilities
-		if client.resolved_capabilities.document_highlight then
-			vim.api.nvim_exec([[
+		if client.resolved_capabilities.resolved_capabilities.document_highlight then
+			vim.api.nvim_exec2([[
       hi LspReferenceRead cterm=bold ctermbg=DarkMagenta guibg=LightYellow
       hi LspReferenceText cterm=bold ctermbg=DarkMagenta guibg=LightYellow
       hi LspReferenceWrite cterm=bold ctermbg=DarkMagenta guibg=LightYellow
@@ -88,7 +87,7 @@ on_attach = function(client, bufnr)
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
-    ]], false)
+    ]], { output = false })
 		end
 	end
 end
