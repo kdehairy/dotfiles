@@ -22,3 +22,7 @@ depends = ["sway"]
 [waybar.files]
 "waybar/config"  = "~/.config/waybar/config"
 "waybar/style.css" = "~/.config/waybar/style.css"
+
+[nvim.files]
+"nvim/init.lua" = "~/.config/nvim/init.lua"
+"nvim/lua/" = "~/.config/nvim/lua/"
