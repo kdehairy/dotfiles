@@ -21,8 +21,11 @@ nvim_lsp.gopls.setup {
 		},
 	},
 	on_attach = function(client, bufnr)
-		on_attach(client, bufnr)
-		vim.api.nvim_create_autocmd({ "BufWritePre" }, { callback = function() goimports(1000) end })
+		On_attach(client, bufnr)
+		vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+			pattern = { "*.go", "*.mod" },
+			callback = function() goimports(1000) end
+		})
 	end,
 }
 
