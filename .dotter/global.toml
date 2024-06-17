@@ -1,0 +1,24 @@
+[zsh.files]
+"zsh/.zshrc" = "~/.zshrc"
+
+[tmux.files]
+"tmux/.tmux.conf" = "~/.tmux.conf"
+
+[foot.files]
+"foot/foot.ini" = "~/.config/foot/foot.ini"
+
+[sway.files]
+"sway/config" = "~/.config/sway/config"
+
+[kickoff]
+depends = ["sway"]
+
+[kickoff.files]
+"kickoff/config.toml" = "~/.config/kickoff/config.toml"
+
+[waybar]
+depends = ["sway"]
+
+[waybar.files]
+"waybar/config"  = "~/.config/waybar/config"
+"waybar/style.css" = "~/.config/waybar/style.css"
