@@ -66,6 +66,10 @@ require('go')
 
 require('null_ls')
 
+require('terraform')
+
 require('auto_completion')
 
 require('tree_sitter')
+
+require('git')

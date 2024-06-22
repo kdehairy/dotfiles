@@ -44,4 +44,8 @@ return require('packer').startup(function(use)
 			ts_update()
 		end,
 	}
+
+	-- git
+	use 'lewis6991/gitsigns.nvim'
+	use 'sindrets/diffview.nvim'
 end)

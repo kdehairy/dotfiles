@@ -1,5 +1,18 @@
+[zsh]
+depends = ["os"]
+
 [zsh.files]
 "zsh/.zshrc" = "~/.zshrc"
+"zsh/.zshenv" = "~/.zshenv"
+
+[zim]
+depends = ["zsh"]
+
+[zim.files]
+"zim/config" = { target = "~/.zim", type = "symbolic" }
+"zim/.zimrc" = { target = "~/.zimrc", type = "symbolic" }
+# { target = "~/.zshrc", type = "symbolic" } 
+
 
 [tmux.files]
 "tmux/.tmux.conf" = "~/.tmux.conf"
@@ -26,3 +39,6 @@ depends = ["sway"]
 [nvim.files]
 "nvim/init.lua" = "~/.config/nvim/init.lua"
 "nvim/lua/" = "~/.config/nvim/lua/"
+
+[os.variables]
+isArch = true
