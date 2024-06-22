@@ -16,9 +16,6 @@ depends = ["zsh"]
 [tmux.files]
 "tmux/.tmux.conf" = "~/.tmux.conf"
 
-[foot]
-depends = ["os"]
-
 [foot.files]
 "foot/foot.ini" = "~/.config/foot/foot.ini"
 "foot/theme/tokyonight" = "~/.local/share/foot/themes/tokyonight"
