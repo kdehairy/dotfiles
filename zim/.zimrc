@@ -38,7 +38,9 @@ zmodule asciiship
 zmodule zsh-users/zsh-completions --fpath src
 # Enables and configures smart and extensive tab completion.
 # completion must be sourced after all modules that add completion definitions.
+if ! type 'compdef' 2>/dev/null | grep -q 'function'; then
 zmodule completion
+fi
 
 #
 # Modules that must be initialized last
