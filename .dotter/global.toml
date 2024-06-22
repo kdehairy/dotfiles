@@ -11,15 +11,20 @@ depends = ["zsh"]
 [zim.files]
 "zim/config" = { target = "~/.zim", type = "symbolic" }
 "zim/.zimrc" = { target = "~/.zimrc", type = "symbolic" }
-# { target = "~/.zshrc", type = "symbolic" } 
 
 
 [tmux.files]
 "tmux/.tmux.conf" = "~/.tmux.conf"
 
+[foot]
+depends = ["os"]
+
 [foot.files]
 "foot/foot.ini" = "~/.config/foot/foot.ini"
 "foot/theme/tokyonight" = "~/.local/share/foot/themes/tokyonight"
+
+[foot.variables]
+versionPre1_17 = false
 
 [sway.files]
 "sway/config" = "~/.config/sway/config"
