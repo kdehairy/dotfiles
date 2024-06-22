@@ -19,6 +19,7 @@ depends = ["zsh"]
 
 [foot.files]
 "foot/foot.ini" = "~/.config/foot/foot.ini"
+"foot/theme/tokyonight" = "~/.local/share/foot/themes/tokyonight"
 
 [sway.files]
 "sway/config" = "~/.config/sway/config"
