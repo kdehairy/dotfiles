@@ -34,7 +34,7 @@ return require('packer').startup(function(use)
 	use 'hrsh7th/vim-vsnip'
 
 	-- filetype
-	use 'nathom/filetype.nvim'
+	-- use 'nathom/filetype.nvim'
 
 	-- tree-sitter
 	use {
