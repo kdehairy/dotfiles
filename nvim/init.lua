@@ -32,7 +32,7 @@ vim.keymap.set('n', '<C-j>', ':vertical res +5<cr>')
 vim.keymap.set('n', '<C-l>', ':vertical res -5<cr>')
 
 --copy to clipboard
-vim.keymap.set('n', '<Leader>y', '"+y')
+vim.keymap.set({ 'n', 'v' }, '<Leader>y', '"+y')
 vim.keymap.set('n', '<Leader>yy', '"+yy')
 vim.keymap.set('n', '<Leader>p', '"+p')
 
