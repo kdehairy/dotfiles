@@ -53,9 +53,6 @@ vim.opt.termguicolors = true
 -- require('colorbuddy').colorscheme('cobalt2')
 vim.cmd([[colorscheme tokyonight]])
 
---filetypes
-require('filetypes')
-
 -- nvim-tree setup
 require('nvim_tree')
 

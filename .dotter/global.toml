@@ -41,6 +41,7 @@ depends = ["sway"]
 
 [nvim.files]
 "nvim/init.lua" = "~/.config/nvim/init.lua"
+"nvim/filetype.lua" = "~/.config/nvim/filetype.lua"
 "nvim/lua/" = "~/.config/nvim/lua/"
 
 [os.variables]
