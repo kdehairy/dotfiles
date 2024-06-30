@@ -28,6 +28,16 @@ vim.diagnostic.config({
 	},
 })
 
+-- Add borders to the hover and signature_help floating window
+vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_hover] = vim.lsp.with(
+	vim.lsp.handlers.hover,
+	{ border = 'single' }
+)
+vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_signatureHelp] = vim.lsp.with(
+	vim.lsp.handlers.signature_help,
+	{ border = 'single' }
+)
+
 
 -- lsp_utils module
 local lsp_utils = {}
@@ -39,11 +49,17 @@ function lsp_utils.client_capabilities()
 	return capabilities
 end
 
+---@param client vim.lsp.Client lsp client
+---@param bufnr integer buffer number
 function lsp_utils.on_attach(client, bufnr)
 	vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
 
 
 	-- Mappings
+	---@param mode string
+	---@param lhs string
+	---@param rhs function
+	---@param opts? vim.keymap.set.Opts
 	local function map(mode, lhs, rhs, opts)
 		opts = opts or { noremap = true, silent = true }
 		opts.buffer = bufnr
@@ -63,24 +79,31 @@ function lsp_utils.on_attach(client, bufnr)
 	map('n', 'gr', function() vim.lsp.buf.references() end)
 	map('n', '[d', function() vim.diagnostic.goto_prev() end)
 	map('n', ']d', function() vim.diagnostic.goto_next() end)
-	map('n', 'ff', function() vim.lsp.buf.format({async = false}) end)
+	map('n', 'ff', function() vim.lsp.buf.format({ async = false }) end)
 
 
-	-- Set some keybinds conditional on server capabilities
-	if client.resolved_capabilities then
-		-- Set autocommands conditional on server_capabilities
-		if client.resolved_capabilities.resolved_capabilities.document_highlight then
-			vim.api.nvim_exec2([[
-      hi LspReferenceRead cterm=bold ctermbg=DarkMagenta guibg=LightYellow
-      hi LspReferenceText cterm=bold ctermbg=DarkMagenta guibg=LightYellow
-      hi LspReferenceWrite cterm=bold ctermbg=DarkMagenta guibg=LightYellow
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]], { output = false })
-		end
+	-- Document Hightlighting
+	if client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+		vim.api.nvim_set_hl(0, 'LspReferenceRead', { link = 'Search' })
+		vim.api.nvim_set_hl(0, 'LspReferenceText', { link = 'Search' })
+		vim.api.nvim_set_hl(0, 'LspReferenceWrite', { link = 'Search' })
+		local group = vim.api.nvim_create_augroup('highlight_symbol', { clear = false })
+		vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
+		vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+			group = group,
+			buffer = bufnr,
+			callback = vim.lsp.buf.document_highlight,
+		})
+		vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+			group = group,
+			buffer = bufnr,
+			callback = vim.lsp.buf.clear_references,
+		})
+	end
+
+	--Inlay hints
+	if client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 	end
 end
 
