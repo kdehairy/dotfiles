@@ -1,7 +1,8 @@
-require('lsp_config')
+lsp_utils = require('lsp_config')
+
 
 require 'lspconfig'.lua_ls.setup {
-	on_attach = On_attach,
+	on_attach = lsp_utils.on_attach,
 	on_init = function(client)
 		local path = client.workspace_folders[1].name
 		if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then

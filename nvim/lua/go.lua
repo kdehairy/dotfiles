@@ -1,11 +1,9 @@
-require('lsp_config')
-
+local lsp_utils = require('lsp_config')
 local nvim_lsp = require('lspconfig')
 
 nvim_lsp.gopls.setup {
 	cmd = { 'gopls' },
-	-- for postfix snippets and analyzers
-	capabilities = capabilities,
+	capabilities = lsp_utils.client_capabilities(),
 	settings = {
 		gopls = {
 			experimentalPostfixCompletions = true,
@@ -21,7 +19,7 @@ nvim_lsp.gopls.setup {
 		},
 	},
 	on_attach = function(client, bufnr)
-		On_attach(client, bufnr)
+		lsp_utils.on_attach(client, bufnr)
 		vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 			pattern = { "*.go" },
 			callback = function()
