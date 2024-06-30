@@ -73,3 +73,5 @@ require('auto_completion')
 require('tree_sitter')
 
 require('git')
+
+require('status_line')

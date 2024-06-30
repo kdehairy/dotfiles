@@ -33,8 +33,11 @@ return require('packer').startup(function(use)
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/vim-vsnip'
 
-	-- filetype
-	-- use 'nathom/filetype.nvim'
+	-- lualine
+	use {
+		'nvim-lualine/lualine.nvim',
+		requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+	}
 
 	-- tree-sitter
 	use {
