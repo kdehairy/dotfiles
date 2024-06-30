@@ -1,4 +1,4 @@
-lsp_utils = require('lsp_config')
+local lsp_utils = require('lsp_config')
 
 
 require 'lspconfig'.lua_ls.setup {
