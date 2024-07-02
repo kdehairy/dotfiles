@@ -18,26 +18,44 @@ set signcolumn=yes
 autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 ]])
 
+-- integrate friendly-snipppets into luasnip
+require('luasnip.loaders.from_vscode').lazy_load()
+
 -- Completion Plugin Setup
+local luasnip = require('luasnip')
 local cmp = require('cmp')
 cmp.setup({
 	-- Enable LSP snippets
 	snippet = {
 		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body)
+			luasnip.lsp_expand(args.body)
 		end,
 	},
 	mapping = {
 		['<S-Tab>'] = cmp.mapping.select_prev_item(),
 		['<Tab>'] = cmp.mapping.select_next_item(),
-		['<C-S-f>'] = cmp.mapping.scroll_docs(-4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4),
+		['<Down>'] = cmp.mapping.scroll_docs(-4),
+		['<Up>'] = cmp.mapping.scroll_docs(4),
 		['<C-Space>'] = cmp.mapping.complete(),
 		['<C-e>'] = cmp.mapping.close(),
 		['<CR>'] = cmp.mapping.confirm({
 			behavior = cmp.ConfirmBehavior.Insert,
 			select = true,
-		})
+		}),
+		['<C-f>'] = cmp.mapping(function(fallback)
+			if luasnip.jumpable(1) then
+				luasnip.jump(1)
+			else
+				fallback()
+			end
+		end, {'i', 's'}),
+		['<C-b>'] = cmp.mapping(function (fallback)
+			if luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, {'i', 's'})
 	},
 	-- Installed sources:
 	sources = {
@@ -46,8 +64,7 @@ cmp.setup({
 		{ name = 'nvim_lsp_signature_help' },                  -- display function signatures with current parameter emphasized
 		{ name = 'nvim_lua',               keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
 		{ name = 'buffer',                 keyword_length = 3 }, -- source current buffer
-		{ name = 'vsnip',                  keyword_length = 2 }, -- nvim-cmp source for vim-vsnip
-		{ name = 'calc' },                                     -- source for math calculation
+		{ name = 'luasnip',                keyword_length = 2 }, -- nvim-cmp source for vscode style snippets
 	},
 	window = {
 		completion = cmp.config.window.bordered(),

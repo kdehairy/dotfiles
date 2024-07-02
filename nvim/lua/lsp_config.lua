@@ -43,9 +43,7 @@ vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_signatureHelp] = vim.lsp.
 local lsp_utils = {}
 
 function lsp_utils.client_capabilities()
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	-- allow for snippets
-	capabilities.textDocument.completion.completionItem.snippetSupport = true
+	local capabilities = require('cmp_nvim_lsp').default_capabilities()
 	return capabilities
 end
 

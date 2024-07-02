@@ -8,8 +8,7 @@ return require('packer').startup(function(use)
 	-- nvim-tree
 	use 'nvim-tree/nvim-tree.lua'
 
-	-- Cobalt color theme
-	use { 'lalitmee/cobalt2.nvim', requires = 'tjdevries/colorbuddy.nvim' }
+	-- color theme
 	use { 'folke/tokyonight.nvim' }
 
 	--LSP, DAP servers, and linters
@@ -22,16 +21,23 @@ return require('packer').startup(function(use)
 	-- Completion framework:
 	use 'hrsh7th/nvim-cmp'
 
+
+	-- --------------------------
+	-- Useful completion sources:
+	-- --------------------------
 	-- LSP completion source:
 	use 'hrsh7th/cmp-nvim-lsp'
-
-	-- Useful completion sources:
-	use 'hrsh7th/cmp-nvim-lua'
 	use 'hrsh7th/cmp-nvim-lsp-signature-help'
-	use 'hrsh7th/cmp-vsnip'
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-buffer'
-	use 'hrsh7th/vim-vsnip'
+	use 'hrsh7th/cmp-nvim-lua'
+	-- snippets
+	use {
+		'L3MON4D3/LuaSnip',
+		tag = 'v2.*',
+		requires = { "rafamadriz/friendly-snippets" },
+	}
+	use 'saadparwaiz1/cmp_luasnip'
 
 	-- lualine
 	use {
