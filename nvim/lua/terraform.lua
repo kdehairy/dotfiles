@@ -7,7 +7,9 @@ require('lspconfig').terraformls.setup {
 		lsp_utils.on_attach(client, bufnr)
 		vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 			pattern = { "*.tf", "*.tfvars" },
-			callback = vim.lsp.buf.format({ async = false }),
+			callback = function()
+				vim.lsp.buf.format({ async = false })
+			end
 		})
 	end,
 }
