@@ -1,5 +1,8 @@
 local lsp_utils = require('lsp_config')
 
+require('lazydev').setup({
+	enabled = true
+})
 
 require 'lspconfig'.lua_ls.setup {
 	capabilities = lsp_utils.client_capabilities(),

@@ -58,6 +58,8 @@ require('nvim_tree')
 
 require('lsp_config')
 
+require('dap_setup')
+
 require('lua')
 
 require('rust')

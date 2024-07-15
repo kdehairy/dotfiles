@@ -17,6 +17,11 @@ return require('packer').startup(function(use)
 	use 'neovim/nvim-lspconfig'
 	use 'simrat39/rust-tools.nvim'
 	use 'jose-elias-alvarez/null-ls.nvim'
+	use 'mfussenegger/nvim-dap'
+	use { 'rcarriga/nvim-dap-ui',
+		requires = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' }
+	}
+	use 'folke/lazydev.nvim'
 
 	-- Completion framework:
 	use 'hrsh7th/nvim-cmp'
@@ -32,8 +37,7 @@ return require('packer').startup(function(use)
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-nvim-lua'
 	-- snippets
-	use {
-		'L3MON4D3/LuaSnip',
+	use { 'L3MON4D3/LuaSnip',
 		tag = 'v2.*',
 		requires = { "rafamadriz/friendly-snippets" },
 	}
