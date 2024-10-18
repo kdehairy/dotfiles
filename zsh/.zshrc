@@ -168,6 +168,12 @@ export PATH=$PATH:${HOME}/.local/bin
 #golang
 export PATH=$PATH:$(go env GOPATH)/bin
 
+#gpg-agent
+unset SSH_AGENT_PID
+SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+export GPG_TTY=$(tty)
+gpg-connect-agent updatestartuptty /bye >/dev/null
+
 
 {{#if dotter.packages.sway}}
 if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then

@@ -65,6 +65,8 @@ exec swayidle -w \
 #    tap enabled
 #}
 
+input type:keyboard xkb_numlock enabled
+
 input * {
 		xkb_layout "us, ara"
 		xkb_options "grp:shifts_toggle"
