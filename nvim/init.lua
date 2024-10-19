@@ -66,6 +66,8 @@ require('rust')
 
 require('go')
 
+require('python')
+
 require('null_ls')
 
 require('terraform')
