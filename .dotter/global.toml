@@ -1,6 +1,9 @@
 [zsh]
 depends = ["os"]
 
+[zsh.variables]
+usingZimComp = true
+
 [zsh.files]
 "zsh/.zshrc" = "~/.zshrc"
 "zsh/.zshenv" = "~/.zshenv"
