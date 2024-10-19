@@ -153,6 +153,14 @@ export EDITOR=nvim
 
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 
+# XDG
+export XDG_CONFIG_HOME=${HOME}/.config
+export XDG_CACHE_HOME=${HOME}/.cache
+export XDG_DATA_HOME=${HOME}/.local/share
+export XDG_STATE_HOME=${HOME}/.local/state
+export XDG_DATA_DIRS=/usr/local/share:/usr/share
+export XDG_CONFIG_DIRS=/etc/xdg
+
 #Wayland specific
 export _JAVA_AWT_WM_NONREPARENTING=1
 export MOZ_ENABLE_WAYLAND=1
@@ -166,7 +174,9 @@ export PATH=$PATH:${HOME}/.local/bin
 [ -d .zshrc.d ] && for f in $(find .zshrc.d -type f);do source $f;done
 
 #golang
-export PATH=$PATH:$(go env GOPATH)/bin
+export GOPATH=${XDG_DATA_HOME}/go
+export GOMODCACHE=${XDG_CACHE_HOME}/go/mod
+export PATH=$PATH:${GOPATH}/bin
 
 #gpg-agent
 unset SSH_AGENT_PID
