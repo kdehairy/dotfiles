@@ -28,6 +28,7 @@ versionPre1_17 = false
 
 [sway.files]
 "sway/config" = "~/.config/sway/config"
+"sway/bkgrnd.jpg" = {target = "~/.local/share/backgrounds/sway/bkgrnd.jpg", type = "symbolic"}
 
 [kickoff]
 depends = ["sway"]
