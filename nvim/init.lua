@@ -36,14 +36,6 @@ vim.keymap.set({ 'n', 'v' }, '<Leader>y', '"+y')
 vim.keymap.set('n', '<Leader>yy', '"+yy')
 vim.keymap.set('n', '<Leader>p', '"+p')
 
--- format xml
-vim.api.nvim_create_user_command('Fmtxml',
-	':%!python -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"', {})
--- format json
-vim.api.nvim_create_user_command('Fmtjson',
-	':%!python -m jsontool', {})
-
-
 require('plugins')
 
 -- set termguicolors to enable highlight groups
@@ -52,6 +44,8 @@ vim.opt.termguicolors = true
 -- Cobalt color theme
 -- require('colorbuddy').colorscheme('cobalt2')
 vim.cmd([[colorscheme tokyonight]])
+
+require('custom_commands')
 
 -- nvim-tree setup
 require('nvim_tree')
