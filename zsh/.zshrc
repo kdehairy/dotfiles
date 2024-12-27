@@ -89,6 +89,7 @@ gpg-connect-agent updatestartuptty /bye >/dev/null
 
 {{#if dotter.packages.sway}}
 if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+	export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json
 	exec sway
 fi
 {{/if}}
