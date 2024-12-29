@@ -33,7 +33,6 @@ dap.configurations.rust = {
 		request = "launch",
 		program = function()
 			return require('dap.utils').pick_file({ path = vim.fn.getcwd() .. '/target/debug' })
-			--return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug', 'file')
 		end,
 		args = function()
 			local t = {}
@@ -52,7 +51,6 @@ dap.configurations.rust = {
 		request = "attach",
 		program = function()
 			return require('dap.utils').pick_file({ path = vim.fn.getcwd() .. '/target/debug' })
-			--return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug', 'file')
 		end,
 		--pid = require('dap.utils').pick_process,
 		waitFor = true,
@@ -63,7 +61,6 @@ dap.configurations.rust = {
 		request = "attach",
 		program = function()
 			return require('dap.utils').pick_file({ path = vim.fn.getcwd() .. '/target/debug' })
-			--return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug', 'file')
 		end,
 		waitFor = false,
 	},
