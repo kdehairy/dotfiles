@@ -78,6 +78,11 @@ function lsp_utils.on_attach(client, bufnr)
 	map('n', '[d', function() vim.diagnostic.goto_prev() end)
 	map('n', ']d', function() vim.diagnostic.goto_next() end)
 	map('n', 'ff', function() vim.lsp.buf.format({ async = false }) end)
+	map('n', '<leader>th', function()
+		if client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+		end
+	end)
 
 
 	-- Document Hightlighting
