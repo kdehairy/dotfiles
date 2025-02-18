@@ -32,6 +32,8 @@ output * bg ~/.local/share/backgrounds/sway/bkgrnd.jpg fill
 exec swaync
 bindsym $mod+Shift+n exec swaync-client -t -sw
 
+focus_follows_mouse no
+
 ### Idle configuration
 exec swayidle -w \
          timeout 300 'swaylock -f -c 084b8a' \
