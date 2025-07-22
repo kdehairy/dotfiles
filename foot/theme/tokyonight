@@ -1,8 +1,5 @@
-[cursor]
-# color=c0caf5 2e3c64
-color=5C6BC0 FFCA28
-
 [colors]
+cursor=5C6BC0 FFCA28
 foreground=c0caf5
 background=24283b
 selection-foreground=c0caf5
