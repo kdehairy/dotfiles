@@ -80,6 +80,9 @@ export GOPATH=${XDG_DATA_HOME}/go
 export GOMODCACHE=${XDG_CACHE_HOME}/go/mod
 export PATH=$PATH:${GOPATH}/bin
 
+#rust
+export PATH=$PATH:${HOME}/.cargo/bin
+
 #gpg-agent
 unset SSH_AGENT_PID
 SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
