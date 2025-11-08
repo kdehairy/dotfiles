@@ -2,7 +2,8 @@ local lualine = require('lualine')
 
 local configs = lualine.get_config()
 
-configs.options.theme = 'codedark'
+configs.options.theme = 'iceberg_dark'
+configs.options.globalstatus = true
 configs.options.component_separators = { left = '|', right = '|' }
 configs.options.section_separators = { left = '', right = '' }
 configs.options.disabled_filetypes = {
