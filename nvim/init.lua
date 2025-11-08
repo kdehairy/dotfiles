@@ -25,6 +25,9 @@ vim.o.smartcase = true
 -- treesitter
 vim.o.foldenable = false
 
+-- floating window border
+vim.o.winborder = 'rounded'
+
 --splits
 vim.keymap.set('n', '<C-h>', ':vertical res +5<cr>')
 vim.keymap.set('n', '<C-l>', ':vertical res -5<cr>')

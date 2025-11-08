@@ -12,10 +12,10 @@ return require('packer').startup(function(use)
 	use { 'folke/tokyonight.nvim' }
 
 	--LSP, DAP servers, and linters
-	use 'williamboman/mason.nvim'
-	use 'williamboman/mason-lspconfig.nvim'
+	use 'mason-org/mason.nvim'
+	use 'mason-org/mason-lspconfig.nvim'
 	use 'neovim/nvim-lspconfig'
-	use 'simrat39/rust-tools.nvim'
+	use 'mrcjkb/rustaceanvim'
 	use 'jose-elias-alvarez/null-ls.nvim'
 	use 'mfussenegger/nvim-dap'
 	use { 'rcarriga/nvim-dap-ui',

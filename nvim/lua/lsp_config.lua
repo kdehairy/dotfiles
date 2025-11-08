@@ -28,17 +28,6 @@ vim.diagnostic.config({
 	},
 })
 
--- Add borders to the hover and signature_help floating window
-vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_hover] = vim.lsp.with(
-	vim.lsp.handlers.hover,
-	{ border = 'single' }
-)
-vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_signatureHelp] = vim.lsp.with(
-	vim.lsp.handlers.signature_help,
-	{ border = 'single' }
-)
-
-
 -- lsp_utils module
 local lsp_utils = {}
 
@@ -75,18 +64,18 @@ function lsp_utils.on_attach(client, bufnr)
 	map('n', '<space>D', function() vim.lsp.buf.type_definition() end)
 	map('n', '<space>rn', function() vim.lsp.buf.rename() end)
 	map('n', 'gr', function() vim.lsp.buf.references() end)
-	map('n', '[d', function() vim.diagnostic.goto_prev() end)
-	map('n', ']d', function() vim.diagnostic.goto_next() end)
+	map('n', '[d', function() vim.diagnostic.jump({count = 1}) end)
+	map('n', ']d', function() vim.diagnostic.jump({count = 1}) end)
 	map('n', 'ff', function() vim.lsp.buf.format({ async = false }) end)
 	map('n', '<leader>th', function()
-		if client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+		if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 		end
 	end)
 
 
 	-- Document Hightlighting
-	if client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
 		vim.api.nvim_set_hl(0, 'LspReferenceRead', { link = 'Search' })
 		vim.api.nvim_set_hl(0, 'LspReferenceText', { link = 'Search' })
 		vim.api.nvim_set_hl(0, 'LspReferenceWrite', { link = 'Search' })
@@ -105,7 +94,7 @@ function lsp_utils.on_attach(client, bufnr)
 	end
 
 	--Inlay hints
-	if client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
 		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 	end
 end
