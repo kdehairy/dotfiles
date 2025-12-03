@@ -60,6 +60,7 @@ function lsp_utils.on_attach(client, bufnr)
 	map('n', '<space>h', function() vim.lsp.buf.signature_help() end)
 	map('n', '<space>wa', function() vim.lsp.buf.add_workspace_folder() end)
 	map('n', '<space>wr', function() vim.lsp.buf.remove_workspace_folder() end)
+	map('n', '<space>s', function() vim.lsp.buf.workspace_symbol() end)
 	map('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end)
 	map('n', '<space>D', function() vim.lsp.buf.type_definition() end)
 	map('n', '<space>rn', function() vim.lsp.buf.rename() end)
@@ -94,9 +95,9 @@ function lsp_utils.on_attach(client, bufnr)
 	end
 
 	--Inlay hints
-	if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-	end
+	-- if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+	-- 	vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+	-- end
 end
 
 return lsp_utils
