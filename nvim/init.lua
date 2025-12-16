@@ -39,14 +39,10 @@ vim.keymap.set({ 'n', 'v' }, '<Leader>y', '"+y')
 vim.keymap.set('n', '<Leader>yy', '"+yy')
 vim.keymap.set('n', '<Leader>p', '"+p')
 
-require('plugins')
+require('config.lazy')
 
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
-
--- Cobalt color theme
--- require('colorbuddy').colorscheme('cobalt2')
-vim.cmd([[colorscheme tokyonight]])
 
 require('custom_commands')
 
