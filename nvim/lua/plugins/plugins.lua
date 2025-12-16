@@ -31,7 +31,7 @@ return {
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lua",
-			{"L3MON4D3/LuaSnip", tag = "v2.*", dependencies = { "rafamadriz/friendly-snippets" }, build = "make install_jsregexp"},
+			{"L3MON4D3/LuaSnip", version = "v2.*", dependencies = { "rafamadriz/friendly-snippets" }, build = "make install_jsregexp"},
 			"saadparwaiz1/cmp_luasnip",
 		},
 	},
