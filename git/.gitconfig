@@ -1,0 +1,20 @@
+[init]
+	defaultBranch = main
+[user]
+	email = khaled@eldoheiri.com
+	name = Khaled Eldoheiri
+	signingkey = F5CDA63ACE13649B21B750E928DF8E5164D63261
+[core]
+	editor = nvim
+[pull]
+	rebase = true
+[diff]
+	tool = meld
+	colorMoved = plain
+	algorithm = histogram
+[alias]
+	logs = "log --oneline --graph --abbrev-commit --date relative"
+[branch]
+	sort = -committerdate
+[rerere]
+	enabled = true

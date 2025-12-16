@@ -48,5 +48,8 @@ depends = ["sway"]
 "nvim/filetype.lua" = "~/.config/nvim/filetype.lua"
 "nvim/lua/" = "~/.config/nvim/lua/"
 
+[git.files]
+"git/.gitconfig" = "~/.gitconfig"
+
 [os.variables]
 isArch = true
