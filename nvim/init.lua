@@ -29,10 +29,10 @@ vim.o.foldenable = false
 vim.o.winborder = 'rounded'
 
 --splits
-vim.keymap.set('n', '<C-h>', ':vertical res +5<cr>')
-vim.keymap.set('n', '<C-l>', ':vertical res -5<cr>')
-vim.keymap.set('n', '<C-j>', ':vertical res +5<cr>')
-vim.keymap.set('n', '<C-l>', ':vertical res -5<cr>')
+vim.keymap.set('n', '<C-H>', ':vertical res +5<cr>')
+vim.keymap.set('n', '<C-L>', ':vertical res -5<cr>')
+vim.keymap.set('n', '<C-J>', ':vertical res +5<cr>')
+vim.keymap.set('n', '<C-L>', ':vertical res -5<cr>')
 
 --copy to clipboard
 vim.keymap.set({ 'n', 'v' }, '<Leader>y', '"+y')
@@ -72,3 +72,5 @@ require('tree_sitter')
 require('git')
 
 require('status_line')
+
+require('movement').setup {}
