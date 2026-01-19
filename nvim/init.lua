@@ -29,10 +29,10 @@ vim.o.foldenable = false
 vim.o.winborder = 'rounded'
 
 --splits
-vim.keymap.set('n', '<C-H>', ':vertical res +5<cr>')
-vim.keymap.set('n', '<C-L>', ':vertical res -5<cr>')
-vim.keymap.set('n', '<C-J>', ':vertical res +5<cr>')
-vim.keymap.set('n', '<C-L>', ':vertical res -5<cr>')
+vim.keymap.set('n', '<S-Right>', ':vertical res +5<cr>')
+vim.keymap.set('n', '<S-Left>', ':vertical res -5<cr>')
+vim.keymap.set('n', '<S-Up>', ':res +5<cr>')
+vim.keymap.set('n', '<S-Down>', ':res -5<cr>')
 
 --copy to clipboard
 vim.keymap.set({ 'n', 'v' }, '<Leader>y', '"+y')
