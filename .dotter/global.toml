@@ -51,5 +51,11 @@ depends = ["sway"]
 [git.files]
 "git/.gitconfig" = "~/.gitconfig"
 
+[gnupg.files]
+"gnupg/gpg-agent.conf" = "~/.gnupg/gpg-agent.conf"
+"gnupg/gpg.conf" = "~/.gnupg/gpg.conf"
+"gnupg/scdaemon.conf" = "~/.gnupg/scdaemon.conf"
+"gnupg/sshcontrol" = "~/.gnupg/sshcontrol"
+
 [os.variables]
 isArch = true
