@@ -4,3 +4,5 @@ local nvim_lsp = vim.lsp.config
 nvim_lsp.pyright = {
 	on_attach = lsp_utils.on_attach
 }
+
+vim.lsp.enable('pyright')
