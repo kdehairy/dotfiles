@@ -61,6 +61,8 @@ require('go')
 
 require('python')
 
+require('clangd')
+
 -- require('null_ls')
 
 require('terraform')
