@@ -48,6 +48,10 @@ depends = ["sway"]
 "nvim/filetype.lua" = "~/.config/nvim/filetype.lua"
 "nvim/lua/" = "~/.config/nvim/lua/"
 
+[nvim.variables]
+nvim-go = false
+nvim-tf = false
+
 [git.files]
 "git/.gitconfig" = "~/.gitconfig"
 

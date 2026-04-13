@@ -57,7 +57,9 @@ require('lua')
 
 require('rust')
 
+{{#if nvim-go}}
 require('go')
+{{/if}}
 
 require('python')
 
@@ -65,7 +67,9 @@ require('clangd')
 
 require('shell')
 
+{{#if nvim-tf}}
 require('terraform')
+{{/if}}
 
 require('auto_completion')
 
