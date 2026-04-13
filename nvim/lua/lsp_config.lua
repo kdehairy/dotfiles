@@ -50,7 +50,7 @@ function lsp_utils.on_attach(client, bufnr)
 	---@param opts? vim.keymap.set.Opts
 	local function map(mode, lhs, rhs, opts)
 		opts = opts or { noremap = true, silent = true }
-		opts.buffer = bufnr
+		opts.buf = bufnr
 		vim.keymap.set(mode, lhs, rhs, opts)
 	end
 	map('n', 'gD', function() vim.lsp.buf.declaration() end)
