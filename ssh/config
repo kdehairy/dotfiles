@@ -1,0 +1,4 @@
+{{#if dotter.packages.gnupg}}
+Include ~/.ssh/gpg_config
+{{/if}}
+Include ~/.ssh/my_config

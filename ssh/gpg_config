@@ -1,0 +1,2 @@
+# make the TTY to be refreshed every time an ssh command is run
+Match host * exec "gpg-connect-agent UPDATESTARTUPTTY /bye"

@@ -1,3 +1,8 @@
+[ssh.files]
+"ssh/config" = "~/.ssh/config"
+"ssh/gpg_config" = "~/.ssh/gpg_config"
+"ssh/my_config" = "~/.ssh/my_config"
+
 [zsh]
 depends = ["os"]
 
