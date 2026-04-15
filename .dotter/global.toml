@@ -1,3 +1,6 @@
+[opencode.files]
+"opencode/opencode.json" = "~/.config/opencode/opencode.json"
+
 [ssh.files]
 "ssh/config" = "~/.ssh/config"
 "ssh/gpg_config" = "~/.ssh/gpg_config"
