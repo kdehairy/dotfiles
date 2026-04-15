@@ -6,6 +6,7 @@
 	signingkey = F5CDA63ACE13649B21B750E928DF8E5164D63261
 [core]
 	editor = nvim
+	excludesfile = /home/kdehairy/.config/git/excludes
 [pull]
 	rebase = true
 [diff]
