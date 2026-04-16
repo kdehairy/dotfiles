@@ -31,7 +31,9 @@
       "ls *": "allow",
       "find *": "allow",
       "grep *": "allow",
-			"cat *": "allow"
+			"cat *": "allow",
+			"head *": "allow",
+			"echo *": "allow"
     }
   },
   "mcp": {
@@ -74,10 +76,7 @@
 			"top_p": 0.95,
 			"permission": {
 				"write": "deny",
-				"edit": "deny",
-				"bash": {
-					"*": "ask"
-				}
+				"edit": "deny"
 			},
 			"prompt": "{file:./prompts/planner.txt}"
 		}
