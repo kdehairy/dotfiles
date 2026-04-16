@@ -1,5 +1,7 @@
 [opencode.files]
 "opencode/opencode.json" = "~/.config/opencode/opencode.json"
+"opencode/prompts/build.txt" = "~/.config/opencode/prompts/build.txt"
+"opencode/prompts/planner.txt" = "~/.config/opencode/prompts/planner.txt"
 
 [ssh.files]
 "ssh/config" = "~/.ssh/config"

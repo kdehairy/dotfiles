@@ -24,7 +24,15 @@
   "autoupdate": false,
   "permission": {
     "write": "ask",
-    "bash": "ask"
+		"edit": "ask",
+		"read": "allow",
+    "bash": {
+      "*": "ask",
+      "ls *": "allow",
+      "find *": "allow",
+      "grep *": "allow",
+			"cat *": "allow"
+    }
   },
   "mcp": {
 		"searxng": {
@@ -45,14 +53,33 @@
       "enabled": true
     }
   },
-	"mode": {
-		"plan": {
-			"temprature": 1.0,
-			"top_p": 0.95
-		},
+	"agent": {
 		"build": {
-			"temprature": 0.7,
-			"top_p": 1.0
+			"mode": "primary",
+			"description": "Build agent for implementation",
+			"model": "llamacpp/GLM-4.7-Flash-UD-Q2_K_XL.gguf",
+			"temperature": 0.7,
+			"top_p": 1.0,
+			"permission": {
+				"write": "ask",
+				"edit": "ask"
+			},
+			"prompt": "{file:./prompts/build.txt}"
+		},
+		"planner": {
+			"mode": "primary",
+			"description": "Planning and analysis agent - does not make any changes",
+			"model": "llamacpp/GLM-4.7-Flash-UD-Q2_K_XL.gguf",
+			"temperature": 1.0,
+			"top_p": 0.95,
+			"permission": {
+				"write": "deny",
+				"edit": "deny",
+				"bash": {
+					"*": "ask"
+				}
+			},
+			"prompt": "{file:./prompts/planner.txt}"
 		}
 	}
 }
