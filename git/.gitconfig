@@ -13,8 +13,17 @@
 	tool = meld
 	colorMoved = plain
 	algorithm = histogram
+[difftool]
+	prompt = false
+[merge]
+	tool = meld
 [alias]
-	logs = "log --oneline --graph --abbrev-commit --date relative"
+	logs = "log --oneline --graph --abbrev-commit --date relative" # --stat for file changes as well
+	st = status
+	co = checkout
+	aa = add --all
+	dt = difftool
+	save = stash save -u
 [branch]
 	sort = -committerdate
 [rerere]
