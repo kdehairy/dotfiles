@@ -1,3 +1,6 @@
+# DONOT ADD YOUR CONFIGS HERE.
+# Add it to the my_config file.
+
 {{#if dotter.packages.gnupg}}
 Include ~/.ssh/gpg_config
 {{/if}}
