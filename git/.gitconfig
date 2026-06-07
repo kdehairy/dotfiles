@@ -24,6 +24,7 @@
 	aa = add --all
 	dt = difftool
 	save = stash save -u
+	new = checkout -b
 [branch]
 	sort = -committerdate
 [rerere]
