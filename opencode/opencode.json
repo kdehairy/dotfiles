@@ -5,21 +5,24 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "llama.cpp (local)",
       "options": {
-        "baseURL": "http://127.0.0.1:8082/v1",
+        "baseURL": "http://model.cloud.home/v1",
         "apiKey": "none"
       },
       "models": {
-        "GLM-4.7-Flash-UD-Q2_K_XL.gguf": {
-          "name": "GLM-4.7 Flash",
+        "Baloza-v0.3": {
+          "name": "Baloza-v0.3",
           "limit": {
             "context": 65536,
             "output": 8192
           }
-        }
+        },
+				"Vajwala-v0.1": {
+					"name": "Vajwala-v0.1"
+				}
       }
     }
   },
-  "model": "llamacpp/GLM-4.7-Flash-UD-Q2_K_XL.gguf",
+  "model": "llamacpp/Baloza-v0.3",
   "autoshare": false,
   "autoupdate": false,
   "permission": {
@@ -33,7 +36,8 @@
       "grep *": "allow",
 			"cat *": "allow",
 			"head *": "allow",
-			"echo *": "allow"
+			"echo *": "allow",
+			"ps *": "allow"
     }
   },
   "mcp": {
@@ -46,11 +50,11 @@
       ],
       "enabled": true,
       "environment": {
-        "SEARXNG_URL": "http://localhost:8888"
+        "SEARXNG_URL": "http://websearch.cloud.home"
       }
     },
     "qdrant": {
-      "url": "http://localhost:3001/mcp",
+      "url": "http://embedding.cloud.home/mcp",
       "type": "remote",
       "enabled": true
     }
@@ -59,7 +63,7 @@
 		"build": {
 			"mode": "primary",
 			"description": "Build agent for implementation",
-			"model": "llamacpp/GLM-4.7-Flash-UD-Q2_K_XL.gguf",
+			"model": "llamacpp/Baloza-v0.3",
 			"temperature": 0.7,
 			"top_p": 1.0,
 			"permission": {
@@ -71,7 +75,7 @@
 		"planner": {
 			"mode": "primary",
 			"description": "Planning and analysis agent - does not make any changes",
-			"model": "llamacpp/GLM-4.7-Flash-UD-Q2_K_XL.gguf",
+			"model": "llamacpp/Baloza-v0.3",
 			"temperature": 1.0,
 			"top_p": 0.95,
 			"permission": {
@@ -79,6 +83,12 @@
 				"edit": "deny"
 			},
 			"prompt": "{file:./prompts/planner.txt}"
-		}
+		},
+		"vision": {
+      "mode": "subagent",
+      "description": "Analyzes images, screenshots, diagrams, and schematics. Returns plain-text descriptions for use by text-only models.",
+      "model": "llamacpp/Vajwala-v0.1",
+      "permission": { "edit": "deny", "bash": "deny" }
+    }
 	}
 }

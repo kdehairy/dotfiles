@@ -1,7 +1,11 @@
+[opencode.variables]
+ai_model = "GLM-4.7-Flash-UD-Q4_K_XL.gguf"
+
 [opencode.files]
 "opencode/opencode.json" = "~/.config/opencode/opencode.json"
 "opencode/prompts/build.txt" = "~/.config/opencode/prompts/build.txt"
 "opencode/prompts/planner.txt" = "~/.config/opencode/prompts/planner.txt"
+"opencode/skills/image-analysis/SKILL.md" = "~/.config/opencode/skills/image-analysis/SKILL.md"
 
 [ssh.files]
 "ssh/config" = "~/.ssh/config"
