@@ -16,8 +16,8 @@
             "output": 8192
           }
         },
-				"Vajwala-v0.1": {
-					"name": "Vajwala-v0.1"
+				"ninni-v0.1": {
+					"name": "ninni-v0.1"
 				}
       }
     }
@@ -54,7 +54,7 @@
       }
     },
     "qdrant": {
-      "url": "http://embedding.cloud.home/mcp",
+      "url": "http://localhost:3001/mcp",
       "type": "remote",
       "enabled": true
     }
@@ -87,7 +87,7 @@
 		"vision": {
       "mode": "subagent",
       "description": "Analyzes images, screenshots, diagrams, and schematics. Returns plain-text descriptions for use by text-only models.",
-      "model": "llamacpp/Vajwala-v0.1",
+      "model": "llamacpp/ninni-v0.1",
       "permission": { "edit": "deny", "bash": "deny" }
     }
 	}
