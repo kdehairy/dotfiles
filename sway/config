@@ -242,9 +242,9 @@ bindsym $mod+Delete mode "$mode_system"
 # screen capture mode
 set $screenshot (a) area, (s) screen, (w) window
 mode "$screenshot" {
-    bindsym a exec 'grimshot save area ~/Pictures/ps_$(date +"%Y%m%d%H%M%S").png', mode "default"
-    bindsym s exec 'grimshot save screen ~/Pictures/ps_$(date +"%Y%m%d%H%M%S").png', mode "default"
-    bindsym w exec 'grimshot save window ~/Pictures/ps_$(date +"%Y%m%d%H%M%S").png', mode "default"
+    bindsym a exec 'grimshot save area $(xdg-user-dir PICTURES)/screenshot_$(date +"%Y%m%d%H%M%S").png', mode "default"
+    bindsym s exec 'grimshot save screen $(xdg-user-dir PICTURES)/screenshot_$(date +"%Y%m%d%H%M%S").png', mode "default"
+    bindsym w exec 'grimshot save window $(xdg-user-dir PICTURES)/screenshot_$(date +"%Y%m%d%H%M%S").png', mode "default"
 
 # back to normal: Enter or Escape
     bindsym Return mode "default"
