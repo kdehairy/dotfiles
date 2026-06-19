@@ -69,6 +69,7 @@ nvim-tf = false
 [git.files]
 "git/.gitconfig" = "~/.gitconfig"
 "git/excludes" = "~/.config/git/excludes"
+"git/.gitconfig.d/local.config" = "~/.gitconfig.d/local.config"
 
 [gnupg.files]
 "gnupg/gpg-agent.conf" = "~/.gnupg/gpg-agent.conf"

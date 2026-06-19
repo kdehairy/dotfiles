@@ -29,3 +29,6 @@
 	sort = -committerdate
 [rerere]
 	enabled = true
+
+[include]
+	path = /home/kdehairy/.gitconfig.d/local.config
