@@ -1,5 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "lsp": true,
   "provider": {
     "llamacpp": {
       "npm": "@ai-sdk/openai-compatible",
@@ -11,14 +12,18 @@
       "models": {
         "Baloza-v0.3": {
           "name": "Baloza-v0.3",
+          "reasoning": true,
           "limit": {
-            "context": 65536,
-            "output": 8192
+            "context": 262144,
+            "output": 65536
+          },
+          "attachment": true,
+          "tool_call": true,
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
           }
-        },
-				"ninni-v0.1": {
-					"name": "ninni-v0.1"
-				}
+        }
       }
     }
   },
@@ -40,65 +45,25 @@
     }
   },
   "mcp": {
-		"searxng": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "mcp-searxng"
-      ],
-      "enabled": true,
-      "environment": {
-        "SEARXNG_URL": "http://websearch.cloud.home"
-      }
-    },
-    "qdrant": {
-      "url": "http://localhost:3001/mcp",
+    "one-search": {
+      "url": "http://onesearch.cloud.home/mcp",
       "type": "remote",
       "enabled": true
+    },
+    "grafana": {
+      "url": "http://grafana-mcp.cloud.home/mcp",
+      "type": "remote",
+      "enabled": true,
+      "headers": {
+        "Authorization": "Bearer {env:GRAFANA_MCP_SERVER_TOKEN}"
+      }
     }
   },
 	"agent": {
-		"build": {
-			"mode": "primary",
-			"description": "Build agent for implementation",
-			"model": "llamacpp/Baloza-v0.3",
-			"temperature": 0.7,
-			"top_p": 1.0,
-			"permission": {
-				"write": "ask",
-				"edit": "ask"
-			},
-			"prompt": "{file:./prompts/build.txt}"
-		},
-		"builder-0.3": {
-			"mode": "primary",
-			"description": "Build agent for implementation",
-			"model": "llamacpp/Baloza-v0.3",
-			"temperature": 0.3,
-			"top_p": 1.0,
-			"permission": {
-				"write": "ask",
-				"edit": "ask"
-			},
-			"prompt": "{file:./prompts/build.txt}"
-		},
-		"planner": {
-			"mode": "primary",
-			"description": "Planning and analysis agent - does not make any changes",
-			"model": "llamacpp/Baloza-v0.3",
-			"temperature": 0.7,
-			"top_p": 1.0,
-			"permission": {
-				"write": "deny",
-				"edit": "deny"
-			},
-			"prompt": "{file:./prompts/planner.txt}"
-		},
 		"vision": {
       "mode": "subagent",
       "description": "Analyzes images, screenshots, diagrams, and schematics. Returns plain-text descriptions for use by text-only models.",
-      "model": "llamacpp/ninni-v0.1",
+      "model": "llamacpp/Baloza-v0.3",
       "permission": { "edit": "deny", "bash": "deny" }
     }
 	}

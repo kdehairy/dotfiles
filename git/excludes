@@ -1,6 +1,6 @@
 AGENTS.md
 CLAUDE.md
 
-**/.claude/
-**/.opencode/
+**/.claude
+**/.opencode
 **/.plans/
