@@ -91,6 +91,7 @@ SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye >/dev/null
 
+{{#if importSecrets}}
 # env secrets import
 # exports secrets in Bitwarden folder 'env'.
 # for each secret note in that folder, it exports a variable matching the 
@@ -111,6 +112,7 @@ rbwenv() {
 	done
 }
 (( $+commands[rbw] )) && rbw unlocked &>/dev/null && rbwenv
+{{/if}}
 
 
 {{#if dotter.packages.sway}}

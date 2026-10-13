@@ -17,6 +17,7 @@ depends = ["os"]
 
 [zsh.variables]
 usingZimComp = true
+importSecrets = true
 
 [zsh.files]
 "zsh/.zshrc" = "~/.zshrc"
