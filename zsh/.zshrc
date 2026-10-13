@@ -91,6 +91,27 @@ SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye >/dev/null
 
+# env secrets import
+# exports secrets in Bitwarden folder 'env'.
+# for each secret note in that folder, it exports a variable matching the 
+# custome field name; export <secret-name>=<secret-value>
+rbwenv() {
+	local folder=${1:-env} id f
+	(( $+commands[rbw] )) || return 1
+	rbw unlocked &>/dev/null || rbw unlock || return 1
+	rbw list --fields id,folder | while IFS=$'\t' read -r id f; do
+		[[ $f == $folder ]] || continue
+		exp=$(rbw get --raw "$id" | jq -r '
+			.fields[]?
+			| select(.name != null and .value != null)
+			| select(.name | test("^[A-Za-z_][A-Za-z0-9_]*$"))
+			| "export \(.name)=\(.value | @sh)"
+		')
+		eval "$exp"
+	done
+}
+(( $+commands[rbw] )) && rbw unlocked &>/dev/null && rbwenv
+
 
 {{#if dotter.packages.sway}}
 if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
