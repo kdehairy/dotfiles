@@ -74,8 +74,8 @@ export XDG_CURRENT_DESKTOP=sway
 
 export PATH=$PATH:${HOME}/.local/bin
 
-# custome scripts
-[ -d .zshrc.d ] && for f in $(find .zshrc.d -type f);do source $f;done
+# custome script
+[ -d ~/.zshrc.d ] && for f in ~/.zshrc.d/*.zsh(N.);do source "$f";done; unset f
 
 #golang
 export GOPATH=${XDG_DATA_HOME}/go
