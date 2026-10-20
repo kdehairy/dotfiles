@@ -1,70 +1,83 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "lsp": true,
-  "provider": {
+  "providers": {
     "llamacpp": {
-      "npm": "@ai-sdk/openai-compatible",
+      "package": "@opencode/ai/providers/openai-compatible",
       "name": "llama.cpp (local)",
-      "options": {
+      "settings": {
         "baseURL": "http://model.cloud.home/v1",
         "apiKey": "none"
       },
       "models": {
         "Baloza-v0.3": {
           "name": "Baloza-v0.3",
-          "reasoning": true,
           "limit": {
             "context": 262144,
             "output": 65536
           },
-          "attachment": true,
-          "tool_call": true,
-          "modalities": {
+          "capabilities": {
+            "tools": true,
             "input": ["text", "image"],
-            "output": ["text"]
+            "output": ["text"],
+            "reasoning": { "supported": true }
           }
         }
       }
     }
   },
   "model": "llamacpp/Baloza-v0.3",
-  "autoshare": false,
-  "autoupdate": false,
-  "permission": {
-    "write": "ask",
-		"edit": "ask",
-		"read": "allow",
-    "bash": {
-      "*": "ask",
-      "ls *": "allow",
-      "find *": "allow",
-      "grep *": "allow",
-			"head *": "allow",
-			"echo *": "allow",
-			"ps *": "allow"
-    }
-  },
+  "update": "disable",
+  "permissions": [
+    { "action": "edit", "resource": "*", "effect": "ask" },
+    { "action": "read", "resource": "*", "effect": "allow" },
+    { "action": "external_directory", "resource": "*", "effect": "ask" },
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    { "action": "shell", "resource": "ls *", "effect": "allow" },
+    { "action": "shell", "resource": "find *", "effect": "allow" },
+    { "action": "shell", "resource": "grep *", "effect": "allow" },
+    { "action": "shell", "resource": "head *", "effect": "allow" },
+    { "action": "shell", "resource": "tail *", "effect": "allow" },
+    { "action": "shell", "resource": "sort *", "effect": "allow" },
+    { "action": "shell", "resource": "echo *", "effect": "allow" },
+    { "action": "shell", "resource": "cat *", "effect": "allow" },
+    { "action": "shell", "resource": "wc *", "effect": "allow" },
+    { "action": "shell", "resource": "ps *", "effect": "allow" },
+    { "action": "shell", "resource": "which *", "effect": "allow" },
+    { "action": "shell", "resource": "tr *", "effect": "allow" },
+    { "action": "shell", "resource": "printf *", "effect": "allow" },
+    { "action": "shell", "resource": "git ls-files *", "effect": "allow" },
+    { "action": "shell", "resource": "git check-ignore *", "effect": "allow" },
+    { "action": "shell", "resource": "git log *", "effect": "allow" },
+    { "action": "shell", "resource": "git status *", "effect": "allow" },
+    { "action": "shell", "resource": "git diff *", "effect": "allow" },
+    { "action": "shell", "resource": "git show *", "effect": "allow" }
+  ],
   "mcp": {
-    "one-search": {
-      "url": "http://onesearch.cloud.home/mcp",
-      "type": "remote",
-      "enabled": true
-    },
-    "grafana": {
-      "url": "http://grafana-mcp.cloud.home/mcp",
-      "type": "remote",
-      "enabled": true,
-      "headers": {
-        "Authorization": "Bearer {env:GRAFANA_MCP_SERVER_TOKEN}"
+    "servers": {
+      "one-search": {
+        "type": "remote",
+        "url": "http://onesearch.cloud.home/mcp",
+        "disabled": false
+      },
+      "grafana": {
+        "type": "remote",
+        "url": "http://grafana-mcp.cloud.home/mcp",
+        "disabled": false,
+        "headers": {
+          "Authorization": "Bearer {env:GRAFANA_MCP_SERVER_TOKEN}"
+        }
       }
     }
   },
-	"agent": {
-		"vision": {
+  "agents": {
+    "vision": {
       "mode": "subagent",
       "description": "Analyzes images, screenshots, diagrams, and schematics. Returns plain-text descriptions for use by text-only models.",
       "model": "llamacpp/Baloza-v0.3",
-      "permission": { "edit": "deny", "bash": "deny" }
+      "permissions": [
+        { "action": "edit", "resource": "*", "effect": "deny" },
+        { "action": "shell", "resource": "*", "effect": "deny" }
+      ]
     }
-	}
+  }
 }
