@@ -6,6 +6,7 @@ ai_model = "GLM-4.7-Flash-UD-Q4_K_XL.gguf"
 "opencode/prompts/build.txt" = "~/.config/opencode/prompts/build.txt"
 "opencode/prompts/planner.txt" = "~/.config/opencode/prompts/planner.txt"
 "opencode/skills/image-analysis/SKILL.md" = "~/.config/opencode/skills/image-analysis/SKILL.md"
+"opencode/helpers/reset-prj-opencode.zsh" = { target = "~/.zshrc.d/reset-prj-opencode.zsh", type = "symbolic", if = "dotter.packages.zsh" }
 
 [ssh.files]
 "ssh/config" = "~/.ssh/config"
