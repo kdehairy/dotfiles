@@ -13,7 +13,6 @@ return {
 	{ "mason-org/mason-lspconfig.nvim" },
 	{ "neovim/nvim-lspconfig" },
 	{ "mrcjkb/rustaceanvim" },
-	{ "jose-elias-alvarez/null-ls.nvim" },
 	{
 		"rcarriga/nvim-dap-ui",
 		dependencies = {

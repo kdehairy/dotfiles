@@ -13,3 +13,5 @@ vim.lsp.config.terraformls = {
 		})
 	end,
 }
+
+vim.lsp.enable('terraformls')
