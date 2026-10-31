@@ -1,16 +1,14 @@
----WORKAROUND
--- Sets treesitter folding once a buffer has entered a window, so ftplugins cannot win the
--- race. BufWinEnter alone is enough (it fires after BufRead/ftplugin); this used to run on
--- five buffer events and, with clear = false, added another autocmd on every re-source.
-local ts_fold_group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', { clear = true })
-vim.api.nvim_create_autocmd('BufWinEnter', {
+-- Treesitter folding. Since nvim-treesitter dropped nvim_treesitter#foldexpr() that call only
+-- raised E117, which foldexpr swallows, so folding silently never happened. Folding now comes
+-- from Neovim itself; this is the form the nvim-treesitter README ("Folds") documents.
+local ts_fold_group = vim.api.nvim_create_augroup('TS_FOLDING', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
 	group = ts_fold_group,
 	callback = function()
-		vim.opt.foldmethod = 'expr'
-		vim.opt.foldexpr   = 'nvim_treesitter#foldexpr()'
-	end
+		vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+		vim.wo[0][0].foldmethod = 'expr'
+	end,
 })
----ENDWORKAROUND
 ---@diagnostic disable-next-line: missing-fields
 require 'nvim-treesitter'.setup {
 	-- A list of parser names, or "all" (the five listed parsers should always be installed)
