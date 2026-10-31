@@ -66,8 +66,6 @@ function lsp_utils.on_attach(client, bufnr)
 	map('n', '<space>D', function() vim.lsp.buf.type_definition() end)
 	map('n', '<space>rn', function() vim.lsp.buf.rename() end)
 	map('n', 'gr', function() vim.lsp.buf.references() end)
-	map('n', '[d', function() vim.diagnostic.jump({count = 1}) end)
-	map('n', ']d', function() vim.diagnostic.jump({count = 1}) end)
 	map('n', 'ff', function() vim.lsp.buf.format({ async = false }) end)
 	map('n', '<leader>th', function()
 		if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
