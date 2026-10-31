@@ -13,6 +13,9 @@
 
 # Remove older command from the history if a duplicate is to be added.
 setopt HIST_IGNORE_ALL_DUPS
+# A command starting with a space is not saved to history. Only works if you
+# remember the leading space - e.g.  rbw get --raw <id>, bw login, curl -H 'Auth...'
+setopt HIST_IGNORE_SPACE
 HISTFILE=~/.histfile
 HISTSIZE=5000
 SAVEHIST=5000
@@ -75,7 +78,7 @@ export XDG_CURRENT_DESKTOP=sway
 export PATH=$PATH:${HOME}/.local/bin
 
 # custome script
-[ -d ~/.zshrc.d ] && for f in ~/.zshrc.d/*.zsh(N-.);do source "$f";done; unset f
+[ -d ~/.zshrc.d ] && { for f in ~/.zshrc.d/*.zsh(N-.);do source "$f";done; unset f; }
 
 #golang
 export GOPATH=${XDG_DATA_HOME}/go
@@ -97,7 +100,7 @@ gpg-connect-agent updatestartuptty /bye >/dev/null
 # for each secret note in that folder, it exports a variable matching the 
 # custome field name; export <secret-name>=<secret-value>
 rbwenv() {
-	local folder=${1:-env} id f
+	local folder=${1:-env} id f exp
 	(( $+commands[rbw] )) || return 1
 	rbw unlocked &>/dev/null || rbw unlock || return 1
 	rbw list --fields id,folder | while IFS=$'\t' read -r id f; do
