@@ -1,9 +1,10 @@
--- tree-sitter
--- vim.opt.foldmethod     = 'expr'
--- vim.opt.foldexpr       = 'nvim_treesitter#foldexpr()'
 ---WORKAROUND
-vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter' }, {
-	group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
+-- Sets treesitter folding once a buffer has entered a window, so ftplugins cannot win the
+-- race. BufWinEnter alone is enough (it fires after BufRead/ftplugin); this used to run on
+-- five buffer events and, with clear = false, added another autocmd on every re-source.
+local ts_fold_group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', { clear = true })
+vim.api.nvim_create_autocmd('BufWinEnter', {
+	group = ts_fold_group,
 	callback = function()
 		vim.opt.foldmethod = 'expr'
 		vim.opt.foldexpr   = 'nvim_treesitter#foldexpr()'
@@ -13,7 +14,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'Buf
 ---@diagnostic disable-next-line: missing-fields
 require 'nvim-treesitter'.setup {
 	-- A list of parser names, or "all" (the five listed parsers should always be installed)
-	ensure_installed = { "c", "lua", "vim", "vimdoc", "go", "rust", "lua" },
+	ensure_installed = { "c", "lua", "vim", "vimdoc", "go", "rust" },
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,
