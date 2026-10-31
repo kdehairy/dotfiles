@@ -1,17 +1,9 @@
+local api = require("nvim-tree.api")
+
 require("nvim-tree").setup({
 	on_attach = function(bufnr)
-		local api = require("nvim-tree.api")
 		-- default mappings
 		api.config.mappings.default_on_attach(bufnr)
-
-		-- custom mappings
-		local function map(mode, lhs, rhs, opts)
-			opts = opts or { noremap = true, silent = true }
-			vim.keymap.set(mode, lhs, rhs, opts)
-		end
-		map('n', '<Leader>tt', api.tree.toggle)
-		map('n', '<Leader>tf', api.tree.find_file)
-		map('n', '<Leader>tc', function() api.tree.collapse_all(true) end)
 	end,
 	hijack_cursor = true,
 	diagnostics = {
@@ -26,6 +18,12 @@ require("nvim-tree").setup({
 	},
 })
 
+-- Registered here rather than in on_attach: these are meant to be reachable from any
+-- buffer, and inside on_attach they did not exist until a tree buffer was created.
+vim.keymap.set('n', '<Leader>tt', api.tree.toggle, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>tf', api.tree.find_file, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>tc', function() api.tree.collapse_all(true) end, { noremap = true, silent = true })
+
 local function open_nvim_tree(data)
 	-- buffer is a directory
 	local directory = vim.fn.isdirectory(data.file) == 1
@@ -35,7 +33,6 @@ local function open_nvim_tree(data)
 	-- change to the directory
 	vim.cmd.cd(data.file)
 	-- open the tree
-	local api = require("nvim-tree.api")
 	api.tree.open()
 end
 
