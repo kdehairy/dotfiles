@@ -24,14 +24,6 @@ importSecrets = true
 "zsh/.zshrc" = "~/.zshrc"
 "zsh/.zshenv" = "~/.zshenv"
 
-[zim]
-depends = ["zsh"]
-
-[zim.files]
-"zim/config" = { target = "~/.zim", type = "symbolic" }
-"zim/.zimrc" = { target = "~/.zimrc", type = "symbolic" }
-
-
 [tmux.files]
 "tmux/.tmux.conf" = "~/.tmux.conf"
 
