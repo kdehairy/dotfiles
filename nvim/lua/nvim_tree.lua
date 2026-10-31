@@ -3,7 +3,7 @@ local api = require("nvim-tree.api")
 require("nvim-tree").setup({
 	on_attach = function(bufnr)
 		-- default mappings
-		api.config.mappings.default_on_attach(bufnr)
+		api.map.on_attach.default(bufnr)
 	end,
 	hijack_cursor = true,
 	diagnostics = {
@@ -22,7 +22,7 @@ require("nvim-tree").setup({
 -- buffer, and inside on_attach they did not exist until a tree buffer was created.
 vim.keymap.set('n', '<Leader>tt', api.tree.toggle, { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>tf', api.tree.find_file, { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>tc', function() api.tree.collapse_all(true) end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>tc', function() api.tree.collapse_all({ keep_buffers = true }) end, { noremap = true, silent = true })
 
 local function open_nvim_tree(data)
 	-- buffer is a directory
