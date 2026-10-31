@@ -56,8 +56,6 @@ alias gdiff='git difftool'
 
 export EDITOR=nvim
 
-export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
-
 # XDG
 export XDG_CONFIG_HOME=${HOME}/.config
 export XDG_CACHE_HOME=${HOME}/.cache
@@ -90,7 +88,7 @@ export PATH=$PATH:${HOME}/.cargo/bin
 
 #gpg-agent
 unset SSH_AGENT_PID
-SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye >/dev/null
 
