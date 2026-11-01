@@ -46,7 +46,7 @@ compinit
 {{/unless}}
 
 {{#if isArch}}
-source /usr/share/doc/pkgfile/command-not-found.zsh
+[[ -r /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
 {{/if}}
 
 #aliases
@@ -88,9 +88,9 @@ export PATH=$PATH:${HOME}/.cargo/bin
 
 #gpg-agent
 unset SSH_AGENT_PID
-export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-export GPG_TTY=$(tty)
-gpg-connect-agent updatestartuptty /bye >/dev/null
+(( $+commands[gpgconf] )) && export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+[ -t 0 ] && export GPG_TTY=$(tty)
+(( $+commands[gpg-connect-agent] )) && gpg-connect-agent updatestartuptty /bye >/dev/null
 
 {{#if importSecrets}}
 # env secrets import
