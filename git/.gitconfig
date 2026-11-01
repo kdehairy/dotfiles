@@ -6,7 +6,7 @@
 	signingkey = F5CDA63ACE13649B21B750E928DF8E5164D63261
 [core]
 	editor = nvim
-	excludesfile = /home/kdehairy/.config/git/excludes
+	excludesfile = ~/.config/git/excludes
 [pull]
 	rebase = true
 [diff]
@@ -31,4 +31,4 @@
 	enabled = true
 
 [include]
-	path = /home/kdehairy/.gitconfig.d/local.config
+	path = ~/.gitconfig.d/local.config

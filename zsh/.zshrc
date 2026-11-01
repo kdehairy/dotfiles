@@ -38,7 +38,7 @@ WORDCHARS=${WORDCHARS//[\/]}
 
 {{#unless usingZimComp}}
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/kdehairy/.zshrc'
+zstyle :compinstall filename "$HOME/.zshrc"
 
 autoload -Uz compinit
 compinit

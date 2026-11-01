@@ -17,7 +17,7 @@ vim.lsp.config.clangd = {
     "--background-index",
     "--clang-tidy",
     -- This MUST be here, not in the .clangd file:
-    "--query-driver=/home/kdehairy/.platformio/packages/**/bin/*-g*",
+    "--query-driver=" .. vim.env.HOME .. "/.platformio/packages/**/bin/*-g*",
 	}
 }
 
