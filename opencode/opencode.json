@@ -27,6 +27,7 @@
   },
   "model": "llamacpp/Baloza-v0.3",
   "update": "disable",
+  "lsp": true,
   "permissions": [
     { "action": "edit", "resource": "*", "effect": "ask" },
     { "action": "read", "resource": "*", "effect": "allow" },
