@@ -43,6 +43,11 @@ an edit is live immediately:
 | Symlink               | Anything without template tags — `sway/config`, `waybar/*`, `git/*`, `opencode/opencode.json`, `tmux`, `gnupg`, `kickoff`, `ssh/gpg_config`, and **each file inside a mapped directory** (`nvim/lua/` is 18 symlinks into the repo). Editing the repo file is live at once, though the app may need to reload it |
 | Rendered copy         | The four files carrying template tags: `zsh/.zshrc`, `ssh/config`, `foot/foot.ini`, `nvim/init.lua`. These stay stale until you run `dotter deploy` |
 
+One symlink is not live just because it points at the repo: opencode's background service watches
+`~/.config/opencode` with inotify, and an edit to the repo file fires no event on the link, so run
+`/reload` in a session (or `touch -h ~/.config/opencode/opencode.json`) after changing
+`opencode/opencode.json`.
+
 Variables are written into the template **unqualified** (`{{#if isArch}}`, not `{{#if os.isArch}}`),
 even though they are declared per package. A template can also branch on which packages this
 machine enables: `dotter.packages.sway` guards the sway autostart and `XDG_CURRENT_DESKTOP` in
