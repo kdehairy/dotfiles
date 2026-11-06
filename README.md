@@ -18,9 +18,6 @@ Personal dotfiles, managed with [`dotter`](https://github.com/SuperCuber/dotter)
 3. Create `.dotter/local.toml` (gitignored — it's machine-specific) picking which packages to deploy on this machine, e.g.:
    ```toml
    packages = ["sway", "zsh", "tmux", "foot", "nvim", "os", "kickoff", "waybar", "gnupg", "ssh", "opencode", "git"]
-
-   [variables]
-   ai_model = "GLM-4.7-Flash-UD-Q4_K_XL.gguf"
    ```
    Only include packages relevant to this machine (e.g. skip `sway`/`waybar`/`kickoff` on a non-Sway box), and set any variables the enabled packages require (see [How it works](#how-it-works)).
 4. Deploy:
