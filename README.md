@@ -41,7 +41,7 @@ an edit is live immediately:
 | Arrives as            | When                                                                                              |
 |-----------------------|---------------------------------------------------------------------------------------------------|
 | Symlink               | Plain files (`sway/config`, `waybar/*`, `git/.gitconfig`, `opencode/opencode.json`, `tmux`, `gnupg`) — editing the repo file is live at once, though apps may need to reload it |
-| Rendered copy         | Files containing template tags (`zsh/.zshrc`, `zsh/.zshenv`, `ssh/config`, `foot/foot.ini`, `nvim/init.lua`) — the copy is stale until you run `dotter deploy` |
+| Rendered copy         | Files containing template tags (`zsh/.zshrc`, `ssh/config`, `foot/foot.ini`, `nvim/init.lua`) — the copy is stale until you run `dotter deploy` |
 | Copied tree           | Directory mappings (`nvim/lua/`) — copied file by file, so these also need `dotter deploy`          |
 
 Variables are written into the template **unqualified** (`{{#if isArch}}`, not `{{#if os.isArch}}`),
@@ -75,7 +75,7 @@ includes `~/.gitconfig.d/local.config` for identity and other box-specific git s
 | `foot`     | Terminal emulator config + theme                                  |
 | `tmux`     | tmux config                                                       |
 | `nvim`     | Neovim config (lazy.nvim, LSP/DAP setup, per-language configs)     |
-| `zsh`      | Shell config: `.zshrc` + `.zshenv` (depends on `os`)               |
+| `zsh`      | Shell config: `.zshrc` (depends on `os`)                            |
 | `git`      | Global gitconfig + global excludes + local override include       |
 | `gnupg`    | GPG agent config                                                  |
 | `ssh`      | SSH client config                                                 |

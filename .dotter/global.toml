@@ -16,7 +16,6 @@ importSecrets = true
 
 [zsh.files]
 "zsh/.zshrc" = "~/.zshrc"
-"zsh/.zshenv" = "~/.zshenv"
 
 [tmux.files]
 "tmux/.tmux.conf" = "~/.tmux.conf"
