@@ -38,11 +38,10 @@ deploys and can override any variable.
 A deployed file is either a **symlink** or a **rendered copy**, and that difference decides whether
 an edit is live immediately:
 
-| Arrives as            | When                                                                                              |
+| Arrives as            | Which                                                                                              |
 |-----------------------|---------------------------------------------------------------------------------------------------|
-| Symlink               | Plain files (`sway/config`, `waybar/*`, `git/.gitconfig`, `opencode/opencode.json`, `tmux`, `gnupg`) — editing the repo file is live at once, though apps may need to reload it |
-| Rendered copy         | Files containing template tags (`zsh/.zshrc`, `ssh/config`, `foot/foot.ini`, `nvim/init.lua`) — the copy is stale until you run `dotter deploy` |
-| Copied tree           | Directory mappings (`nvim/lua/`) — copied file by file, so these also need `dotter deploy`          |
+| Symlink               | Anything without template tags — `sway/config`, `waybar/*`, `git/*`, `opencode/opencode.json`, `tmux`, `gnupg`, `kickoff`, `ssh/gpg_config`, and **each file inside a mapped directory** (`nvim/lua/` is 18 symlinks into the repo). Editing the repo file is live at once, though the app may need to reload it |
+| Rendered copy         | The four files carrying template tags: `zsh/.zshrc`, `ssh/config`, `foot/foot.ini`, `nvim/init.lua`. These stay stale until you run `dotter deploy` |
 
 Variables are written into the template **unqualified** (`{{#if isArch}}`, not `{{#if os.isArch}}`),
 even though they are declared per package. A template can also branch on which packages this
