@@ -23,7 +23,7 @@
 	co = checkout
 	aa = add --all
 	dt = difftool
-	save = stash save -u
+	save = stash push -u
 	new = checkout -b
 [branch]
 	sort = -committerdate
