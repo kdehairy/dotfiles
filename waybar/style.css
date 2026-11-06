@@ -75,7 +75,7 @@ button:hover {
 #cpu,
 #memory,
 #disk,
-#temperature,
+#custom-script.temperature,
 #backlight,
 #network,
 #pulseaudio,
@@ -151,7 +151,7 @@ label:focus {
     min-width: 100px;
 }
 
-#temperature.critical {
+#custom-script.temperature.critical {
     background-color: #eb4d4b;
 }
 
