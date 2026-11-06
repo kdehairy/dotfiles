@@ -56,25 +56,22 @@
     "servers": {
       "one-search": {
         "type": "remote",
-        "url": "http://onesearch.cloud.home/mcp",
-        "disabled": false
+        "url": "http://onesearch.cloud.home/mcp"
       },
       "grafana": {
         "type": "remote",
         "url": "http://grafana-mcp.cloud.home/mcp",
-        "disabled": false,
         "headers": {
           "Authorization": "Bearer {env:GRAFANA_MCP_SERVER_TOKEN}"
         }
-      }
-    },
-    "github": {
-      "type": "remote",
-      "url": "https://api.githubcopilot.com/mcp/",
-      "enabled": true,
-      "oauth": false,
-      "headers": {
-        "Authorization": "Bearer {env:GITHUB_PAT}"
+      },
+      "github": {
+        "type": "remote",
+        "url": "https://api.githubcopilot.com/mcp/",
+        "oauth": false,
+        "headers": {
+          "Authorization": "Bearer {env:GITHUB_PAT}"
+        }
       }
     }
   }
