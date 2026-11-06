@@ -1,0 +1,13 @@
+# Lua formatting for nvim/. Run `stylua --check nvim` (then `stylua nvim`) from the repo root:
+# stylua looks for this file from each target's directory upward, stopping at the run directory.
+# It is a tool config, not a dotfile -- nothing here is deployed.
+#
+# The values mirror the tree as it stands, so the deferred format pass changes shape instead of
+# rewriting: the lua is tab-indented (1023 tab lines against 61 space lines), init.lua sets
+# tabstop/shiftwidth/softtabstop to 2, single quotes outnumber double 224 to 143, and only four
+# lines run past 120 columns.
+
+indent_type = "Tabs"
+indent_width = 2
+column_width = 120
+quote_style = "AutoPreferSingle"
