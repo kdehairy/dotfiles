@@ -19,8 +19,11 @@ nvim_lsp.gopls = {
 	},
 	on_attach = function(client, bufnr)
 		lsp_utils.on_attach(client, bufnr)
+		local group = vim.api.nvim_create_augroup('go_organize_imports', { clear = false })
+		vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
 		vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-			pattern = { "*.go" },
+			group = group,
+			buffer = bufnr,
 			callback = function()
 				local enc = client.offset_encoding or "utf-8"
 				local range_params = vim.lsp.util.make_range_params(0, "utf-8")
