@@ -28,20 +28,56 @@ Personal dotfiles, managed with [`dotter`](https://github.com/SuperCuber/dotter)
 
 To pull in later changes, `git pull` then `dotter deploy` again. To remove everything this repo deployed, run `dotter undeploy`.
 
+## How it works
+
+`.dotter/global.toml` defines every package: its `files` map (`"repo/path" = "~/target/path"`), its
+`variables`, and any `depends` on other packages (pulling one package in pulls its dependencies).
+`.dotter/local.toml` is machine-local and gitignored: it lists the packages this machine actually
+deploys and can override any variable.
+
+A deployed file is either a **symlink** or a **rendered copy**, and that difference decides whether
+an edit is live immediately:
+
+| Arrives as            | When                                                                                              |
+|-----------------------|---------------------------------------------------------------------------------------------------|
+| Symlink               | Plain files (`sway/config`, `waybar/*`, `git/.gitconfig`, `opencode/opencode.json`, `tmux`, `gnupg`) — editing the repo file is live at once, though apps may need to reload it |
+| Rendered copy         | Files containing template tags (`zsh/.zshrc`, `zsh/.zshenv`, `ssh/config`, `foot/foot.ini`, `nvim/init.lua`) — the copy is stale until you run `dotter deploy` |
+| Copied tree           | Directory mappings (`nvim/lua/`) — copied file by file, so these also need `dotter deploy`          |
+
+Variables are written into the template **unqualified** (`{{#if isArch}}`, not `{{#if os.isArch}}`),
+even though they are declared per package. A template can also branch on which packages this
+machine enables: `dotter.packages.sway` guards the sway autostart and `XDG_CURRENT_DESKTOP` in
+`zsh/.zshrc`, and `dotter.packages.gnupg` the `Include ~/.ssh/gpg_config` line in `ssh/config`.
+What exists today:
+
+| Variable             | Default | Used by            | Meaning                                                       |
+|----------------------|---------|--------------------|---------------------------------------------------------------|
+| `os.isArch`          | `true`  | `zsh`              | Arch-only shell bits: pkgfile's command-not-found hook         |
+| `zsh.usingZimComp`   | `true`  | `zsh`              | Skip the `compinstall`/`compinit` block; completion comes from elsewhere |
+| `zsh.importSecrets`  | `true`  | `zsh`              | Define `rbwenv`, which exports notes from the Bitwarden `env` folder |
+| `foot.versionPre1_17`| `false` | `foot`             | Set `true` on foot older than 1.17 to omit the `unicode-input` key |
+| `nvim.nvim-go`       | `false` | `nvim`             | Opt in to the Go toolchain config                              |
+| `nvim.nvim-tf`       | `false` | `nvim`             | Opt in to the Terraform toolchain config                       |
+
+### Keeping machine-local files out of the repo
+
+Two hooks take per-machine extras, so they never need a commit: `~/.zshrc.d/*.zsh` is sourced by
+`.zshrc` (the extension is required — anything else is skipped silently), and `~/.gitconfig`
+includes `~/.gitconfig.d/local.config` for identity and other box-specific git settings.
+
 ## Packages
 
-| Package  | Deploys                                                        |
-|----------|-----------------------------------------------------------------|
-| `sway`   | Sway (Wayland compositor) config + background                  |
-| `waybar` | Status bar (depends on `sway`)                                  |
-| `kickoff`| App launcher (depends on `sway`)                                 |
-| `foot`   | Terminal emulator config + theme                                 |
-| `tmux`   | tmux config                                                       |
-| `nvim`   | Neovim config (lazy.nvim, LSP/DAP setup, per-language configs)   |
-| `zsh`    | Shell config (depends on `os`)                                   |
-| `zim`    | Zsh plugin manager config (depends on `zsh`)                     |
-| `git`    | Global gitconfig + global excludes + local override include      |
-| `gnupg`  | GPG agent config                                                  |
-| `ssh`    | SSH client config                                                 |
-| `opencode`| `opencode` CLI config: providers, MCP servers, custom agents     |
-| `os`     | OS-detection variables (e.g. `isArch`) consumed by other packages |
+| Package    | Deploys                                                          |
+|------------|-------------------------------------------------------------------|
+| `sway`     | Sway (Wayland compositor) config + background                    |
+| `waybar`   | Status bar config, style, and CPU-temperature script (depends on `sway`) |
+| `kickoff`  | App launcher (depends on `sway`)                                  |
+| `foot`     | Terminal emulator config + theme                                  |
+| `tmux`     | tmux config                                                       |
+| `nvim`     | Neovim config (lazy.nvim, LSP/DAP setup, per-language configs)     |
+| `zsh`      | Shell config: `.zshrc` + `.zshenv` (depends on `os`)               |
+| `git`      | Global gitconfig + global excludes + local override include       |
+| `gnupg`    | GPG agent config                                                  |
+| `ssh`      | SSH client config                                                 |
+| `opencode` | `opencode` CLI config: local llama.cpp provider and MCP servers    |
+| `os`       | No files; OS-detection variables (`isArch`) consumed by other packages |
