@@ -1,7 +1,7 @@
 -- LSP, DAP servers & debuggers
 require('mason').setup()
 require('mason-lspconfig').setup {
-	ensure_installed = { "rust_analyzer", "lua_ls", "pyright" },
+	ensure_installed = { "rust_analyzer", "lua_ls", "pyright", "tree-sitter-cli" },
 	automatic_installation = true,
 	automatic_enable = false,
 }
