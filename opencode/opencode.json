@@ -77,16 +77,5 @@
         "Authorization": "Bearer {env:GITHUB_PAT}"
       }
     }
-  },
-  "agents": {
-    "vision": {
-      "mode": "subagent",
-      "description": "Analyzes images, screenshots, diagrams, and schematics. Returns plain-text descriptions for use by text-only models.",
-      "model": "llamacpp/Baloza-v0.3",
-      "permissions": [
-        { "action": "edit", "resource": "*", "effect": "deny" },
-        { "action": "shell", "resource": "*", "effect": "deny" }
-      ]
-    }
   }
 }

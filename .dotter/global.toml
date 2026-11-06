@@ -1,6 +1,5 @@
 [opencode.files]
 "opencode/opencode.json" = "~/.config/opencode/opencode.json"
-"opencode/skills/image-analysis/SKILL.md" = "~/.config/opencode/skills/image-analysis/SKILL.md"
 "opencode/helpers/reset-prj-opencode.zsh" = { target = "~/.zshrc.d/reset-prj-opencode.zsh", type = "symbolic", if = "dotter.packages.zsh" }
 
 [ssh.files]
