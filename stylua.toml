@@ -1,11 +1,16 @@
-# Lua formatting for nvim/. Run `stylua --check nvim` (then `stylua nvim`) from the repo root:
-# stylua looks for this file from each target's directory upward, stopping at the run directory.
-# It is a tool config, not a dotfile -- nothing here is deployed.
+# Lua formatting for nvim/. Run from the repo root:
+#   ~/.local/share/nvim/mason/bin/stylua --check -g '!nvim/init.lua' nvim   # report
+#   ~/.local/share/nvim/mason/bin/stylua         -g '!nvim/init.lua' nvim   # rewrite
+# stylua looks for this file from each target's directory upward, stopping at the run
+# directory. It is a tool config, not a dotfile -- nothing here is deployed.
 #
-# The values mirror the tree as it stands, so the deferred format pass changes shape instead of
-# rewriting: the lua is tab-indented (1023 tab lines against 61 space lines), init.lua sets
-# tabstop/shiftwidth/softtabstop to 2, single quotes outnumber double 224 to 143, and only four
-# lines run past 120 columns.
+# init.lua must stay out of every run: its dotter template tags are not valid Lua, so
+# stylua cannot parse it (without the exclusion `--check` exits 2) and the deployed copy
+# is whatever `dotter deploy` rendered, not something a formatter should touch.
+#
+# The values are the tree as it now stands after the pass: no space-indented line left,
+# 482 single-quote pairs against 8 double, and one line past 120 columns -- a long string
+# literal in python.lua that stylua leaves alone.
 
 indent_type = "Tabs"
 indent_width = 2
