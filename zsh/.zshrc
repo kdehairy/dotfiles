@@ -52,6 +52,7 @@ compinit
 #aliases
 alias ls='ls --color=auto'
 alias gdiff='git difftool'
+alias fixpintty='gpg-connect-agent updatestartuptty /bye >/dev/null'
 
 
 export EDITOR=nvim
