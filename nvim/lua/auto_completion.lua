@@ -55,16 +55,16 @@ cmp.setup({
 			else
 				fallback()
 			end
-		end, { 'i', 's' })
+		end, { 'i', 's' }),
 	},
 	-- Installed sources:
 	sources = {
-		{ name = 'path' },                                     -- file paths
-		{ name = 'nvim_lsp',               keyword_length = 1 }, -- from language server
-		{ name = 'nvim_lsp_signature_help' },                  -- display function signatures with current parameter emphasized
-		{ name = 'nvim_lua',               keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
-		{ name = 'buffer',                 keyword_length = 3 }, -- source current buffer
-		{ name = 'luasnip',                keyword_length = 2 }, -- nvim-cmp source for vscode style snippets
+		{ name = 'path' }, -- file paths
+		{ name = 'nvim_lsp', keyword_length = 1 }, -- from language server
+		{ name = 'nvim_lsp_signature_help' }, -- display function signatures with current parameter emphasized
+		{ name = 'nvim_lua', keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
+		{ name = 'buffer', keyword_length = 3 }, -- source current buffer
+		{ name = 'luasnip', keyword_length = 2 }, -- nvim-cmp source for vscode style snippets
 	},
 	window = {
 		completion = cmp.config.window.bordered(),

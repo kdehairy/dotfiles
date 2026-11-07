@@ -1,6 +1,6 @@
-local api = require("nvim-tree.api")
+local api = require('nvim-tree.api')
 
-require("nvim-tree").setup({
+require('nvim-tree').setup({
 	on_attach = function(bufnr)
 		-- default mappings
 		api.map.on_attach.default(bufnr)
@@ -14,7 +14,7 @@ require("nvim-tree").setup({
 		highlight_diagnostics = 'name',
 		indent_markers = {
 			enable = true,
-		}
+		},
 	},
 })
 
@@ -22,7 +22,9 @@ require("nvim-tree").setup({
 -- buffer, and inside on_attach they did not exist until a tree buffer was created.
 vim.keymap.set('n', '<Leader>tt', api.tree.toggle, { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>tf', api.tree.find_file, { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>tc', function() api.tree.collapse_all({ keep_buffers = true }) end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>tc', function()
+	api.tree.collapse_all({ keep_buffers = true })
+end, { noremap = true, silent = true })
 
 local function open_nvim_tree(data)
 	-- buffer is a directory
@@ -36,4 +38,4 @@ local function open_nvim_tree(data)
 	api.tree.open()
 end
 
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+vim.api.nvim_create_autocmd({ 'VimEnter' }, { callback = open_nvim_tree })

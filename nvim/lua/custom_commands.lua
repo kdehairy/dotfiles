@@ -14,8 +14,7 @@ local function format_buffer(cmd, name)
 
 	if result.code ~= 0 then
 		local err = (result.stderr or ''):gsub('\n+$', '')
-		vim.notify(name .. ': ' .. (err ~= '' and err or ('exited with code ' .. result.code)),
-			vim.log.levels.ERROR)
+		vim.notify(name .. ': ' .. (err ~= '' and err or ('exited with code ' .. result.code)), vim.log.levels.ERROR)
 		return
 	end
 

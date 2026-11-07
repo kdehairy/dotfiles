@@ -7,8 +7,8 @@ local default_config = {
 	resize_step_rows = 3,
 	create_default_keymaps = true,
 	wrap_navigation = false,
-	ignore_filetypes = { "help", "qf" },
-	ignore_buftypes = { "nofile", "terminal", "prompt" },
+	ignore_filetypes = { 'help', 'qf' },
+	ignore_buftypes = { 'nofile', 'terminal', 'prompt' },
 	can_create_new_splits = false,
 	new_split_opens_blank_buffer = false,
 	-- If true, allow horizontal resize even when current window has 'winfixwidth'
@@ -23,7 +23,7 @@ local default_config = {
 local user_config = {}
 
 local function get_config()
-	return vim.tbl_deep_extend("force", default_config, user_config or {})
+	return vim.tbl_deep_extend('force', default_config, user_config or {})
 end
 
 local function get_current_tabpage()
@@ -36,7 +36,7 @@ end
 
 local function is_floating(win)
 	local cfg = vim.api.nvim_win_get_config(win)
-	return cfg and cfg.relative ~= "" and cfg.relative ~= nil
+	return cfg and cfg.relative ~= '' and cfg.relative ~= nil
 end
 
 local function should_ignore_window(win, cfg)
@@ -44,13 +44,13 @@ local function should_ignore_window(win, cfg)
 		return true
 	end
 	local buf = vim.api.nvim_win_get_buf(win)
-	local bt = vim.api.nvim_get_option_value("buftype", { buf = buf })
+	local bt = vim.api.nvim_get_option_value('buftype', { buf = buf })
 	for _, ignored in ipairs(cfg.ignore_buftypes or {}) do
 		if bt == ignored then
 			return true
 		end
 	end
-	local ft = vim.api.nvim_get_option_value("filetype", { buf = buf })
+	local ft = vim.api.nvim_get_option_value('filetype', { buf = buf })
 	for _, ignored in ipairs(cfg.ignore_filetypes or {}) do
 		if ft == ignored then
 			return true
@@ -120,17 +120,17 @@ local function get_neighbor_window(direction)
 	local current = vim.api.nvim_get_current_win()
 	local before = current
 	local cmd = ({
-		left = "h",
-		right = "l",
-		up = "k",
-		down = "j",
+		left = 'h',
+		right = 'l',
+		up = 'k',
+		down = 'j',
 	})[direction]
 	if not cmd then
 		return nil
 	end
 
 	-- Try to move; if movement fails, Neovim keeps the same window
-	vim.cmd("wincmd " .. cmd)
+	vim.cmd('wincmd ' .. cmd)
 	local after = vim.api.nvim_get_current_win()
 	if after ~= before then
 		-- moved; move back to original and return the neighbor id
@@ -264,17 +264,17 @@ local function open_split(direction, cfg)
 		before[w] = true
 	end
 
-	if direction == "right" then
-		vim.cmd("rightbelow vsplit")
-	elseif direction == "left" then
-		vim.cmd("leftabove vsplit")
-	elseif direction == "up" then
-		vim.cmd("aboveleft split")
-	elseif direction == "down" then
-		vim.cmd("belowright split")
+	if direction == 'right' then
+		vim.cmd('rightbelow vsplit')
+	elseif direction == 'left' then
+		vim.cmd('leftabove vsplit')
+	elseif direction == 'up' then
+		vim.cmd('aboveleft split')
+	elseif direction == 'down' then
+		vim.cmd('belowright split')
 	end
 	if cfg.new_split_opens_blank_buffer then
-		vim.cmd("enew")
+		vim.cmd('enew')
 	end
 
 	-- Focus the new window explicitly
@@ -295,12 +295,12 @@ local function can_resize_current(direction, cfg)
 		return false
 	end
 	local win = vim.api.nvim_get_current_win()
-	local fixwidth = vim.api.nvim_get_option_value("winfixwidth", { win = win })
-	local fixheight = vim.api.nvim_get_option_value("winfixheight", { win = win })
-	if (direction == "left" or direction == "right") and fixwidth and not (cfg and cfg.ignore_winfixwidth) then
+	local fixwidth = vim.api.nvim_get_option_value('winfixwidth', { win = win })
+	local fixheight = vim.api.nvim_get_option_value('winfixheight', { win = win })
+	if (direction == 'left' or direction == 'right') and fixwidth and not (cfg and cfg.ignore_winfixwidth) then
 		return false
 	end
-	if (direction == "up" or direction == "down") and fixheight then
+	if (direction == 'up' or direction == 'down') and fixheight then
 		return false
 	end
 	return true
@@ -310,25 +310,25 @@ local function resize_towards(direction, cfg)
 	if not can_resize_current(direction, cfg) then
 		return false
 	end
-	if direction == "left" or direction == "right" then
+	if direction == 'left' or direction == 'right' then
 		local win = vim.api.nvim_get_current_win()
 		local disabled_fixwidth = false
 		if cfg and cfg.ignore_winfixwidth then
-			local ok_get, fixwidth = pcall(vim.api.nvim_get_option_value, "winfixwidth", { win = win })
+			local ok_get, fixwidth = pcall(vim.api.nvim_get_option_value, 'winfixwidth', { win = win })
 			if ok_get and fixwidth then
-				local ok_set = pcall(vim.api.nvim_set_option_value, "winfixwidth", false, { win = win })
+				local ok_set = pcall(vim.api.nvim_set_option_value, 'winfixwidth', false, { win = win })
 				if ok_set then
 					disabled_fixwidth = true
 				end
 			end
 		end
-		local ok_cmd, _ = pcall(vim.cmd, "vertical resize +" .. tonumber(cfg.resize_step_cols or 5))
+		local ok_cmd, _ = pcall(vim.cmd, 'vertical resize +' .. tonumber(cfg.resize_step_cols or 5))
 		if disabled_fixwidth then
-			pcall(vim.api.nvim_set_option_value, "winfixwidth", true, { win = win })
+			pcall(vim.api.nvim_set_option_value, 'winfixwidth', true, { win = win })
 		end
 		return ok_cmd
 	else
-		vim.cmd("resize +" .. tonumber(cfg.resize_step_rows or 3))
+		vim.cmd('resize +' .. tonumber(cfg.resize_step_rows or 3))
 		return true
 	end
 end
@@ -336,13 +336,13 @@ end
 local function wrap_to_opposite_edge(direction, cfg)
 	local edges = get_edge_windows(cfg)
 	local target
-	if direction == "left" then
+	if direction == 'left' then
 		target = edges.right
-	elseif direction == "right" then
+	elseif direction == 'right' then
 		target = edges.left
-	elseif direction == "up" then
+	elseif direction == 'up' then
 		target = edges.bottom
-	elseif direction == "down" then
+	elseif direction == 'down' then
 		target = edges.top
 	end
 	if target and target ~= 0 then
@@ -386,7 +386,7 @@ local function get_sibling_units_in_plane(direction)
 	local current_win = vim.api.nvim_get_current_win()
 	local layout = vim.fn.winlayout()
 	local cfg = get_config()
-	local is_horizontal = direction == "left" or direction == "right"
+	local is_horizontal = direction == 'left' or direction == 'right'
 
 	local function get_unit_dimensions(node)
 		-- Returns the total width and height of a layout unit
@@ -456,8 +456,7 @@ local function get_sibling_units_in_plane(direction)
 		local container = path[i].node
 		local container_type = container[1]
 
-		if (is_horizontal and container_type == 'row') or
-				(not is_horizontal and container_type == 'col') then
+		if (is_horizontal and container_type == 'row') or (not is_horizontal and container_type == 'col') then
 			target_container = container
 			break
 		end
@@ -482,7 +481,7 @@ local function get_sibling_units_in_plane(direction)
 				width = width,
 				height = height,
 				wins = wins,
-				is_current = true
+				is_current = true,
 			} }
 		end
 	else
@@ -497,7 +496,7 @@ local function get_sibling_units_in_plane(direction)
 					width = width,
 					height = height,
 					wins = wins,
-					is_current = contains_current_win(wins)
+					is_current = contains_current_win(wins),
 				})
 			end
 		end
@@ -525,7 +524,7 @@ local function auto_resize_focused_window(direction, cfg)
 		return
 	end
 
-	local is_horizontal = direction == "left" or direction == "right"
+	local is_horizontal = direction == 'left' or direction == 'right'
 	local target_ratio = cfg.auto_resize_ratio or 0.65
 
 	-- Calculate total space available among units and find current unit
@@ -559,17 +558,17 @@ local function auto_resize_focused_window(direction, cfg)
 	-- But for simplicity, we'll resize the current window and let Neovim adjust the others
 	local resize_cmd
 	if is_horizontal then
-		resize_cmd = string.format("vertical resize %d", target_size)
+		resize_cmd = string.format('vertical resize %d', target_size)
 	else
-		resize_cmd = string.format("resize %d", target_size)
+		resize_cmd = string.format('resize %d', target_size)
 	end
 
 	-- Temporarily disable winfixwidth if needed
 	local disabled_fixwidth = false
 	if is_horizontal and cfg.ignore_winfixwidth then
-		local ok_get, fixwidth = pcall(vim.api.nvim_get_option_value, "winfixwidth", { win = current_win })
+		local ok_get, fixwidth = pcall(vim.api.nvim_get_option_value, 'winfixwidth', { win = current_win })
 		if ok_get and fixwidth then
-			local ok_set = pcall(vim.api.nvim_set_option_value, "winfixwidth", false, { win = current_win })
+			local ok_set = pcall(vim.api.nvim_set_option_value, 'winfixwidth', false, { win = current_win })
 			if ok_set then
 				disabled_fixwidth = true
 			end
@@ -580,7 +579,7 @@ local function auto_resize_focused_window(direction, cfg)
 
 	-- Restore winfixwidth if we disabled it
 	if disabled_fixwidth then
-		pcall(vim.api.nvim_set_option_value, "winfixwidth", true, { win = current_win })
+		pcall(vim.api.nvim_set_option_value, 'winfixwidth', true, { win = current_win })
 	end
 end
 
@@ -598,7 +597,7 @@ local function move(direction)
 
 	-- We are at the edge in that direction
 	local can_create = false
-	if direction == "left" or direction == "right" then
+	if direction == 'left' or direction == 'right' then
 		local num_columns = count_columns_in_current_row()
 		can_create = num_columns < (cfg.max_columns or 1)
 	else
@@ -630,29 +629,29 @@ local function move(direction)
 end
 
 function M.move_left()
-	move("left")
+	move('left')
 end
 
 function M.move_right()
-	move("right")
+	move('right')
 end
 
 function M.move_up()
-	move("up")
+	move('up')
 end
 
 function M.move_down()
-	move("down")
+	move('down')
 end
 
 function M.setup(opts)
 	user_config = opts or {}
 	local cfg = get_config()
 	if cfg.create_default_keymaps then
-		vim.keymap.set("n", "<C-h>", M.move_left, { noremap = true, silent = true, desc = "Splitwise: move left" })
-		vim.keymap.set("n", "<C-l>", M.move_right, { noremap = true, silent = true, desc = "Splitwise: move right" })
-		vim.keymap.set("n", "<C-k>", M.move_up, { noremap = true, silent = true, desc = "Splitwise: move up" })
-		vim.keymap.set("n", "<C-j>", M.move_down, { noremap = true, silent = true, desc = "Splitwise: move down" })
+		vim.keymap.set('n', '<C-h>', M.move_left, { noremap = true, silent = true, desc = 'Splitwise: move left' })
+		vim.keymap.set('n', '<C-l>', M.move_right, { noremap = true, silent = true, desc = 'Splitwise: move right' })
+		vim.keymap.set('n', '<C-k>', M.move_up, { noremap = true, silent = true, desc = 'Splitwise: move up' })
+		vim.keymap.set('n', '<C-j>', M.move_down, { noremap = true, silent = true, desc = 'Splitwise: move down' })
 	end
 end
 

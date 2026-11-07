@@ -1,10 +1,10 @@
 -- LSP, DAP servers & debuggers
 require('mason').setup()
-require('mason-lspconfig').setup {
-	ensure_installed = { "rust_analyzer", "lua_ls", "pyright", "tree-sitter-cli" },
+require('mason-lspconfig').setup({
+	ensure_installed = { 'rust_analyzer', 'lua_ls', 'pyright', 'tree-sitter-cli' },
 	automatic_installation = true,
 	automatic_enable = false,
-}
+})
 
 -- LSP Diagnostics Options Setup
 vim.diagnostic.config({
@@ -12,9 +12,9 @@ vim.diagnostic.config({
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = 'x',
-			[vim.diagnostic.severity.WARN]  = '!',
-			[vim.diagnostic.severity.INFO]  = 'i',
-			[vim.diagnostic.severity.HINT]  = '?',
+			[vim.diagnostic.severity.WARN] = '!',
+			[vim.diagnostic.severity.INFO] = 'i',
+			[vim.diagnostic.severity.HINT] = '?',
 		},
 	},
 	underline = true,
@@ -42,7 +42,6 @@ end
 function lsp_utils.on_attach(client, bufnr)
 	vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
 
-
 	-- Mappings
 	---@param mode string
 	---@param lhs string
@@ -53,26 +52,53 @@ function lsp_utils.on_attach(client, bufnr)
 		opts.buf = bufnr
 		vim.keymap.set(mode, lhs, rhs, opts)
 	end
-	map('n', 'gD', function() vim.lsp.buf.declaration() end)
-	map('n', 'gd', function() vim.lsp.buf.definition() end)
-	map('n', 'ga', function() vim.lsp.buf.code_action() end)
-	map('n', '<C-space>', function() vim.lsp.buf.hover() end)
-	map('n', 'gi', function() vim.lsp.buf.implementation() end)
-	map('n', '<space>h', function() vim.lsp.buf.signature_help() end)
-	map('n', '<space>wa', function() vim.lsp.buf.add_workspace_folder() end)
-	map('n', '<space>wr', function() vim.lsp.buf.remove_workspace_folder() end)
-	map('n', '<space>s', function() vim.lsp.buf.workspace_symbol() end)
-	map('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end)
-	map('n', '<space>D', function() vim.lsp.buf.type_definition() end)
-	map('n', '<space>rn', function() vim.lsp.buf.rename() end)
-	map('n', 'gr', function() vim.lsp.buf.references() end)
-	map('n', 'ff', function() vim.lsp.buf.format({ async = false }) end)
+	map('n', 'gD', function()
+		vim.lsp.buf.declaration()
+	end)
+	map('n', 'gd', function()
+		vim.lsp.buf.definition()
+	end)
+	map('n', 'ga', function()
+		vim.lsp.buf.code_action()
+	end)
+	map('n', '<C-space>', function()
+		vim.lsp.buf.hover()
+	end)
+	map('n', 'gi', function()
+		vim.lsp.buf.implementation()
+	end)
+	map('n', '<space>h', function()
+		vim.lsp.buf.signature_help()
+	end)
+	map('n', '<space>wa', function()
+		vim.lsp.buf.add_workspace_folder()
+	end)
+	map('n', '<space>wr', function()
+		vim.lsp.buf.remove_workspace_folder()
+	end)
+	map('n', '<space>s', function()
+		vim.lsp.buf.workspace_symbol()
+	end)
+	map('n', '<space>wl', function()
+		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	end)
+	map('n', '<space>D', function()
+		vim.lsp.buf.type_definition()
+	end)
+	map('n', '<space>rn', function()
+		vim.lsp.buf.rename()
+	end)
+	map('n', 'gr', function()
+		vim.lsp.buf.references()
+	end)
+	map('n', 'ff', function()
+		vim.lsp.buf.format({ async = false })
+	end)
 	map('n', '<leader>th', function()
 		if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 		end
 	end)
-
 
 	-- Document Hightlighting
 	if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then

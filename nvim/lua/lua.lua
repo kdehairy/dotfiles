@@ -1,18 +1,18 @@
 local lsp_utils = require('lsp_config')
 
 require('lazydev').setup({
-	enabled = true
+	enabled = true,
 })
 
 vim.lsp.config.lua_ls = {
 	capabilities = lsp_utils.client_capabilities(),
-	filetypes = {'lua'},
+	filetypes = { 'lua' },
 	root_markers = {
-		".luarc.json",
-		".luarc.jsonc",
-		".luacheckrc",
-		".stylua.toml",
-		".git",
+		'.luarc.json',
+		'.luarc.jsonc',
+		'.luacheckrc',
+		'.stylua.toml',
+		'.git',
 	},
 	on_attach = lsp_utils.on_attach,
 	on_init = function(client)
@@ -33,16 +33,16 @@ vim.lsp.config.lua_ls = {
 				checkThirdParty = false,
 				library = {
 					vim.env.VIMRUNTIME,
-				}
+				},
 			},
 			completion = {
-				keywordSnippet = "Both"
-			}
+				keywordSnippet = 'Both',
+			},
 		})
 	end,
 	settings = {
-		Lua = {}
-	}
+		Lua = {},
+	},
 }
 
 vim.lsp.enable('lua_ls')
