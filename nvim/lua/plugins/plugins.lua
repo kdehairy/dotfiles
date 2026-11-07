@@ -62,4 +62,22 @@ return {
 		ft = { 'markdown' },
 		opts = {},
 	},
+	{
+		"bombsimon/garmin-monkeyc.nvim",
+		ft = "monkeyc",
+		config = function()
+			local lsp_utils = require('lsp_config')
+			local monkeyc = require('garmin-monkeyc')
+			monkeyc.setup({
+				capabilities = lsp_utils.client_capabilities(),
+				on_attach = function(client, bufnr)
+					lsp_utils.on_attach(client, bufnr)
+					-- this server's hover and signature help need the plugin's wrappers
+					vim.keymap.set('n', '<C-space>', monkeyc.hover, { buf = bufnr })
+					vim.keymap.set('n', '<space>h', monkeyc.signature_help, { buf = bufnr })
+				end,
+				developer_key = "~/.garmin/developer_key.der",
+			})
+		end,
+	},
 }
