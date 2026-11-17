@@ -1,10 +1,24 @@
 -- LSP, DAP servers & debuggers
 require('mason').setup()
 require('mason-lspconfig').setup({
-	ensure_installed = { 'rust_analyzer', 'lua_ls', 'pyright', 'tree-sitter-cli' },
+	ensure_installed = { 'rust_analyzer', 'lua_ls', 'pyright' },
 	automatic_installation = true,
 	automatic_enable = false,
 })
+
+-- Non-LSP tools. mason-lspconfig's ensure_installed accepts lspconfig server names only, so
+-- these are installed straight from the mason registry instead.
+-- tree-sitter-cli: nvim-treesitter (main) shells out to it to build parsers (see tree_sitter.lua).
+local mason_tools = { 'tree-sitter-cli', 'stylua' }
+local registry = require('mason-registry')
+registry.refresh(function()
+	for _, name in ipairs(mason_tools) do
+		local ok, pkg = pcall(registry.get_package, name)
+		if ok and not pkg:is_installed() and not pkg:is_installing() then
+			pkg:install()
+		end
+	end
+end)
 
 -- LSP Diagnostics Options Setup
 vim.diagnostic.config({
